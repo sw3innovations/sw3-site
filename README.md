@@ -41,7 +41,7 @@ sw3-site/
 ## Domínio
 
 - Produção: **sw3.tec.br** (Vercel)
-- Contato: admin@sw3.tec.br | (83) 98690-3799
+- Contato: admin@sw3.tec.br | (83) 98120 0570
 
 ---
 
