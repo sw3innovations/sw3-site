@@ -32,6 +32,75 @@ function SolweLogo({ size = 32, style = {} }) {
   return <img src={SOLW3_LOGO} alt="SOLW3 IA" style={{ width: size, height: size, borderRadius: size * 0.2, objectFit: "cover", ...style }} />;
 }
 
+// ——— Terminal Animation ———
+function TerminalAnimation() {
+  const [step, setStep] = useState(0);
+  const lines = [
+    { delay: 800, tag: ">", tagColor: "rgba(255,255,255,0.3)", text: "solw3 build --projeto \"CRM para clínica\"", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 1200, tag: "[ARCH]", tagColor: "#7dd3fc", text: "Analisando requisitos...", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 900, tag: "[ARCH]", tagColor: "#7dd3fc", text: "3 módulos identificados", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 1100, tag: "[BACK]", tagColor: "#a78bfa", text: "Gerando FastAPI + PostgreSQL...", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 800, tag: "[BACK]", tagColor: "#a78bfa", text: "Auth JWT + RBAC configurado", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 1000, tag: "[FRONT]", tagColor: "#34d399", text: "React + Dashboard criado", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 900, tag: "[FRONT]", tagColor: "#34d399", text: "Módulo Agenda integrado", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 700, tag: "[QA]", tagColor: "#fbbf24", text: "12 testes gerados... 12/12 passed", textColor: "#34d399" },
+    { delay: 1200, tag: "[DEPLOY]", tagColor: "#7dd3fc", text: "staging.cliente.sw3.tec.br", textColor: "rgba(255,255,255,0.5)" },
+    { delay: 600, tag: "---", tagColor: "none", text: "", textColor: "none" },
+    { delay: 800, tag: "ok", tagColor: "#34d399", text: "Sistema entregue em 6 semanas", textColor: "rgba(255,255,255,0.6)" },
+    { delay: 600, tag: "ok", tagColor: "#34d399", text: "Código no GitHub + docs gerados", textColor: "rgba(255,255,255,0.6)" },
+  ];
+
+  useEffect(() => {
+    if (step >= lines.length) {
+      var t = setTimeout(function() { setStep(0); }, 3000);
+      return function() { clearTimeout(t); };
+    }
+    var total = 0;
+    for (var i = 0; i <= step; i++) { total += lines[i].delay; }
+    var t = setTimeout(function() { setStep(function(s) { return s + 1; }); }, lines[step].delay);
+    return function() { clearTimeout(t); };
+  }, [step]);
+
+  return (
+    <div style={{ background: "rgba(15,23,42,0.8)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.3)" }}>
+      <div style={{ padding: "10px 14px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", gap: 6 }}>
+          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
+          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
+          <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
+        </div>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 10, color: "rgba(255,255,255,0.3)", marginLeft: 8 }}>solw3-agent</span>
+      </div>
+      <div style={{ padding: "16px 18px", fontFamily: "var(--mono)", fontSize: 11.5, lineHeight: 1.8, minHeight: 280 }}>
+        {lines.slice(0, step).map(function(line, i) {
+          if (line.tag === "---") return <div key={i} style={{ color: "rgba(255,255,255,0.15)", marginTop: 8 }}>{"────────────────────────────"}</div>;
+          return (
+            <div key={i} style={{ opacity: 0, animation: "fadeIn 0.3s ease forwards", marginTop: line.tag === "ok" ? 2 : (i > 0 && lines[i-1].tag !== line.tag ? 6 : 0) }}>
+              {line.tag === "ok" ? (
+                <span><span style={{ color: line.tagColor }}>{"✓ "}</span><span style={{ color: line.textColor }}>{line.text}</span></span>
+              ) : (
+                <span><span style={{ color: line.tagColor }}>{line.tag} </span><span style={{ color: line.textColor }}>{line.text}</span></span>
+              )}
+            </div>
+          );
+        })}
+        {step < lines.length && (
+          <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ color: "var(--accent)" }}>{">"}</span>
+            <span style={{ display: "inline-block", width: 7, height: 14, background: "var(--accent)", opacity: 0.7, animation: "blink 1s infinite" }} />
+          </div>
+        )}
+        {step >= lines.length && (
+          <div style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ color: "var(--accent)" }}>{">"}</span>
+            <span style={{ display: "inline-block", width: 7, height: 14, background: "var(--accent)", opacity: 0.7, animation: "blink 1s infinite" }} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ——— Main ———
 export default function SOLW3Site() {
   const [showChat, setShowChat] = useState(false);
@@ -95,7 +164,7 @@ export default function SOLW3Site() {
       </nav>
 
       {/* ════════ HERO ════════ */}
-          <section style={{ background: "var(--bg-dark)", color: "#fff", position: "relative", overflow: "hidden", padding: "140px 32px 100px", minHeight: 560 }}>
+      <section style={{ background: "var(--bg-dark)", color: "#fff", position: "relative", overflow: "hidden", padding: "140px 32px 100px", minHeight: 560 }}>
         <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "linear-gradient(rgba(125,211,252,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,252,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px", maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent)", WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent)" }} />
         <div style={{ position: "absolute", top: "-20%", right: "-10%", width: 600, height: 600, background: "radial-gradient(circle, rgba(125,211,252,0.08), transparent 60%)", pointerEvents: "none" }} />
 
@@ -267,13 +336,12 @@ export default function SOLW3Site() {
             <div style={{ flex: 1, minWidth: 280 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12 }}>QUEM SOMOS</div>
               <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 12, letterSpacing: "-0.02em", lineHeight: 1.25 }}>Tecnologia que resolve problemas reais</h3>
-              <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.7 }}>Somos a SW3 Innovations, um laboratório de tecnologia em Campina Grande-PB. Usamos IA e automação para criar, precificar, prototipar e entregar sistemas completos, com agentes inteligentes acelerando cada etapa e humanos garantindo qualidade.</p>
+              <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.7 }}>Somos a SW3 Innovations, um laboratório de tecnologia em Campina Grande-PB. Usamos IA e automação para criar, prototipar e entregar sistemas completos, com agentes inteligentes acelerando cada etapa e humanos garantindo qualidade.</p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 14, minWidth: 260 }}>
               {[
                 { label: "Sede", value: "Campina Grande — PB" },
                 { label: "Foco", value: "IA, Automação e Software" },
-                { label: "Stack", value: "React, Python, AWS, Claude" },
                 { label: "Modelo", value: "Projetos + Suporte contínuo" },
               ].map((item, i) => (
                 <div key={i} style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
@@ -298,7 +366,7 @@ export default function SOLW3Site() {
             <a href="mailto:admin@sw3.tec.br" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, border: "1px solid rgba(255,255,255,0.12)", textDecoration: "none" }}>admin@sw3.tec.br</a>
           </div>
           <div style={{ display: "flex", gap: 24, justifyContent: "center", flexWrap: "wrap", fontSize: 11, color: "rgba(255,255,255,0.35)", fontFamily: "var(--mono)" }}>
-            <span>Campina Grande — PB</span><span>(83) 98690-3799</span><span>sw3.tec.br</span>
+            <span>Campina Grande — PB</span><span>sw3.tec.br</span>
           </div>
         </div>
       </section>
@@ -357,7 +425,7 @@ export default function SOLW3Site() {
         </button>
       )}
 
-      <style>{"* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; } ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; } ::selection { background: rgba(125,211,252,0.2); } @media (max-width: 768px) { nav > div > div:last-child > a { display: none !important; } div[style*='repeat(4'] { grid-template-columns: 1fr 1fr !important; } div[style*='repeat(3'] { grid-template-columns: 1fr !important; } }"}</style>
+      <style>{"* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; } ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; } ::selection { background: rgba(125,211,252,0.2); } @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } } @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } } @media (max-width: 768px) { nav > div > div:last-child > a { display: none !important; } div[style*='repeat(4'] { grid-template-columns: 1fr 1fr !important; } div[style*='repeat(3'] { grid-template-columns: 1fr !important; } }"}</style>
     </div>
   );
 }
