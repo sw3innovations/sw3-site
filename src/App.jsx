@@ -284,7 +284,7 @@ export default function SOLW3Site() {
       {/* ════════ CONTATO ════════ */}
       <section id="contato" style={{ padding: "100px 32px", background: "var(--bg-dark)", color: "#fff" }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
-          <Logo size={48} style={{ margin: "0 auto 20px", display: "block" }} />
+          <SolweLogo size={48} style={{ margin: "0 auto 20px", display: "block" }} />
           <h2 style={{ fontSize: "clamp(26px, 3.5vw, 38px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.12, marginBottom: 14 }}>Descreva sua ideia. A gente constrói.</h2>
           <p style={{ color: "var(--text-light2)", fontSize: 13.5, marginBottom: 36, lineHeight: 1.6 }}>Converse com a SOLW3 IA agora ou fale direto com a equipe pelo WhatsApp.</p>
           <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", marginBottom: 48 }}>
