@@ -32,7 +32,7 @@ const FALLBACK = {
   "refatorar": "Modernizamos sistemas existentes. Oferecemos diagnóstico técnico gratuito do seu código. Quer experimentar?",
   "extensão": "Adicionamos features e integrações a sistemas existentes com escopo cirúrgico. Qual sistema quer estender?",
   "staff": "Nossos devs trabalham com agentes IA — output de 2-3x um dev solo. Qual perfil precisa?",
-  "preço": "Projetos novos: R$3k-150k. Refatoração: R$5k-80k. Extensão: R$2k-40k. Staff: R$4-15k/mês. Quer um orçamento personalizado?",
+  "preço": "Projetos novos: R$8k-350k. Refatoração: R$15k-80k. Extensão: R$2k-40k. Staff: R$5-15k/mês. Quer um orçamento personalizado?",
   default: "Sou a SOLW3, IA da SW3 Innovations. Posso te ajudar a criar um sistema novo, melhorar um existente, ou reforçar seu time de dev. O que você precisa?"
 };
 
@@ -150,10 +150,10 @@ export default function SOLW3Site() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
             {[
-              { icon: "✦", title: "Projeto Novo", desc: "Criar sistema do zero a partir de uma ideia. IA conduz requisitos, precifica e propõe.", ticket: "R$3k–150k", time: "2–20 semanas", color: "#7dd3fc" },
-              { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico técnico automático com score de saúde 0–100.", ticket: "R$5k–80k", time: "4–16 semanas", color: "#a78bfa" },
-              { icon: "⊕", title: "Extensão / Plugin", desc: "Adicionar features ou integrações a sistema existente com escopo cirúrgico.", ticket: "R$2k–40k", time: "1–8 semanas", color: "#34d399" },
-              { icon: "⊞", title: "Braço de Dev", desc: "Squad sob demanda dentro do seu repo e processos. Devs com agentes IA = 2-3x output.", ticket: "R$4–15k/mês", time: "Mín. 3 meses", color: "#fbbf24" },
+              { icon: "✦", title: "Projeto Novo", desc: "Criar sistema do zero a partir de uma ideia. IA conduz requisitos, precifica e propõe.", ticket: "R$8k–350k", time: "2–20 semanas", color: "#7dd3fc" },
+              { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico técnico automático com score de saúde 0–100.", ticket: "R$10k–80k", time: "4–16 semanas", color: "#a78bfa" },
+              { icon: "⊕", title: "Extensão / Plugin", desc: "Adicionar features ou integrações a sistema existente com escopo cirúrgico.", ticket: "R$5k–40k", time: "1–8 semanas", color: "#34d399" },
+              { icon: "⊞", title: "Braço de Dev", desc: "Squad sob demanda dentro do seu repo e processos. Devs com agentes IA = 2-3x output.", ticket: "R$5–20k/mês", time: "Mín. 3 meses", color: "#fbbf24" },
             ].map((mod, i) => (
               <div key={i} onClick={() => setShowChat(true)} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
                 onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = mod.color + "40"; }}
