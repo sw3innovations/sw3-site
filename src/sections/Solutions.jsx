@@ -1,0 +1,38 @@
+var MODALITIES = [
+  { icon: "✦", title: "Projeto Novo", desc: "Criar sistema do zero a partir de uma ideia. IA conduz requisitos, precifica e propõe.", ticket: "Sob consulta", time: "2–20 semanas", color: "#7dd3fc" },
+  { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico técnico automático com score de saúde 0–100.", ticket: "Sob consulta", time: "4–16 semanas", color: "#a78bfa" },
+  { icon: "⊕", title: "Extensão / Plugin", desc: "Adicionar features ou integrações a sistema existente com escopo cirúrgico.", ticket: "Sob consulta", time: "1–8 semanas", color: "#34d399" },
+  { icon: "⊞", title: "Braço de Dev", desc: "Squad sob demanda dentro do seu repo e processos. Devs com agentes IA = 2-3x output.", ticket: "Sob consulta", time: "Mín. 3 meses", color: "#fbbf24" },
+];
+
+export default function Solutions({ onOpenChat }) {
+  return (
+    <section id="solucoes" style={{ padding: "80px 32px 100px", background: "var(--bg)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ marginBottom: 44 }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>O QUE FAZEMOS</div>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>4 formas de transformar seu negócio</h2>
+          <p style={{ color: "var(--text2)", fontSize: 14.5, maxWidth: 580, lineHeight: 1.6 }}>Cada modalidade abre o chat na SOLW3 IA, que conduz o processo do diagnóstico à entrega.</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
+          {MODALITIES.map(function(mod, i) {
+            return (
+              <div key={i} onClick={onOpenChat} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
+                onMouseEnter={function(e) { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = mod.color + "40"; }}
+                onMouseLeave={function(e) { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "var(--border)"; }}
+              >
+                <div style={{ fontSize: 28, marginBottom: 16, color: mod.color, opacity: 0.7 }}>{mod.icon}</div>
+                <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 8, letterSpacing: "-0.02em" }}>{mod.title}</h3>
+                <p style={{ fontSize: 12.5, color: "var(--text2)", lineHeight: 1.6, marginBottom: 18 }}>{mod.desc}</p>
+                <div style={{ display: "flex", justifyContent: "space-between", paddingTop: 14, borderTop: "1px solid var(--border)", fontSize: 10.5, fontFamily: "var(--mono)" }}>
+                  <span style={{ color: "var(--text3)" }}>{mod.time}</span>
+                  <span style={{ color: "var(--navy)", fontWeight: 600 }}>{mod.ticket}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
