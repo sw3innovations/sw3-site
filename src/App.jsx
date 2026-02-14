@@ -104,6 +104,7 @@ function TerminalAnimation() {
 // ——— Main ———
 export default function SOLW3Site() {
   const [showChat, setShowChat] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState([{ role: "assistant", text: "Olá! Sou a SOLW3. Posso te ajudar a criar um sistema novo, melhorar um que já existe, ou reforçar seu time. O que você precisa?" }]);
   const [isTyping, setIsTyping] = useState(false);
@@ -151,7 +152,8 @@ export default function SOLW3Site() {
               <div style={{ fontSize: 7.5, color: navSolid ? "var(--text3)" : "rgba(255,255,255,0.5)", fontFamily: "var(--mono)", letterSpacing: "0.14em", fontWeight: 500 }}>by SW3 INNOVATIONS</div>
             </div>
           </a>
-          <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
+          {/* Desktop nav */}
+          <div className="nav-desktop" style={{ display: "flex", gap: 28, alignItems: "center" }}>
             {[{ l: "Soluções", h: "#solucoes" }, { l: "Como Funciona", h: "#como-funciona" }, { l: "Pós-Entrega", h: "#planos" }, { l: "Lab", h: "#lab" }, { l: "Contato", h: "#contato" }].map(n => (
               <a key={n.l} href={n.h} style={{ color: navSolid ? "var(--text2)" : "rgba(255,255,255,0.65)", textDecoration: "none", fontSize: 12.5, fontWeight: 500, transition: "color 0.2s" }}
                 onMouseEnter={e => e.target.style.color = navSolid ? "var(--text)" : "#fff"}
@@ -160,8 +162,24 @@ export default function SOLW3Site() {
             ))}
             <button onClick={() => setShowChat(true)} style={{ background: navSolid ? "var(--bg-dark)" : "rgba(255,255,255,0.12)", color: "#fff", padding: "7px 16px", borderRadius: 7, fontWeight: 600, fontSize: 11, border: navSolid ? "none" : "1px solid rgba(255,255,255,0.15)", cursor: "pointer", fontFamily: "var(--display)", transition: "all 0.3s" }}>Falar com IA</button>
           </div>
+          {/* Hamburger button */}
+          <button className="nav-hamburger" onClick={() => setShowMenu(!showMenu)} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, zIndex: 1002 }}>
+            <div style={{ width: 20, height: 2, background: navSolid ? "var(--text)" : "#fff", marginBottom: 5, transition: "all 0.3s", transform: showMenu ? "rotate(45deg) translate(2.5px, 2.5px)" : "none" }} />
+            <div style={{ width: 20, height: 2, background: navSolid ? "var(--text)" : "#fff", marginBottom: 5, transition: "all 0.3s", opacity: showMenu ? 0 : 1 }} />
+            <div style={{ width: 20, height: 2, background: navSolid ? "var(--text)" : "#fff", transition: "all 0.3s", transform: showMenu ? "rotate(-45deg) translate(2.5px, -2.5px)" : "none" }} />
+          </button>
         </div>
       </nav>
+
+      {/* Mobile menu overlay */}
+      {showMenu && (
+        <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "var(--bg-dark)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24 }}>
+          {[{ l: "Soluções", h: "#solucoes" }, { l: "Como Funciona", h: "#como-funciona" }, { l: "Pós-Entrega", h: "#planos" }, { l: "Lab", h: "#lab" }, { l: "Contato", h: "#contato" }].map(n => (
+            <a key={n.l} href={n.h} onClick={() => setShowMenu(false)} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 20, fontWeight: 600, transition: "color 0.2s" }}>{n.l}</a>
+          ))}
+          <button onClick={() => { setShowChat(true); setShowMenu(false); }} style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer", fontFamily: "var(--display)", marginTop: 12 }}>Falar com IA</button>
+        </div>
+      )}
 
       {/* ════════ HERO ════════ */}
       <section style={{ background: "var(--bg-dark)", color: "#fff", position: "relative", overflow: "hidden", padding: "140px 32px 100px", minHeight: 560 }}>
@@ -185,7 +203,7 @@ export default function SOLW3Site() {
             </div>
 
             {/* Pipeline badges */}
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 40 }}>
+            <div className="pipeline-badges" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 40 }}>
               {["Conversa", "Proposta", "Execução", "Entrega", "Suporte"].map((s, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 0 }}>
                   <div style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", padding: "5px 14px", borderRadius: 5, fontSize: 10, color: i < 4 ? "var(--accent)" : "rgba(255,255,255,0.35)", fontFamily: "var(--mono)", fontWeight: 600 }}>{s}</div>
@@ -196,7 +214,7 @@ export default function SOLW3Site() {
           </div>
 
           {/* Terminal animation */}
-          <div style={{ flex: "0 0 420px", minWidth: 320 }}>
+          <div className="hero-terminal" style={{ flex: "0 0 420px", minWidth: 320 }}>
             <TerminalAnimation />
           </div>
         </div>
@@ -332,7 +350,7 @@ export default function SOLW3Site() {
       {/* ════════ QUEM SOMOS ════════ */}
       <section style={{ padding: "80px 32px", background: "var(--bg)" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14, padding: "44px 48px", display: "flex", alignItems: "center", gap: 48, flexWrap: "wrap", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+          <div className="quem-somos-card" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14, padding: "44px 48px", display: "flex", alignItems: "center", gap: 48, flexWrap: "wrap", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
             <div style={{ flex: 1, minWidth: 280 }}>
               <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12 }}>QUEM SOMOS</div>
               <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 12, letterSpacing: "-0.02em", lineHeight: 1.25 }}>Tecnologia que resolve problemas reais</h3>
@@ -384,7 +402,7 @@ export default function SOLW3Site() {
 
       {/* ════════ SOLW3 CHAT WIDGET ════════ */}
       {showChat && (
-        <div style={{ position: "fixed", bottom: 20, right: 20, width: 370, maxHeight: 500, background: "#fff", border: "1px solid var(--border)", borderRadius: 16, zIndex: 9999, display: "flex", flexDirection: "column", boxShadow: "0 24px 80px rgba(0,0,0,0.15)", overflow: "hidden" }}>
+        <div className="chat-widget" style={{ position: "fixed", bottom: 20, right: 20, width: 370, maxHeight: 500, background: "#fff", border: "1px solid var(--border)", borderRadius: 16, zIndex: 9999, display: "flex", flexDirection: "column", boxShadow: "0 24px 80px rgba(0,0,0,0.15)", overflow: "hidden" }}>
           <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--bg-dark)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <SolweLogo size={24} />
@@ -425,7 +443,7 @@ export default function SOLW3Site() {
         </button>
       )}
 
-      <style>{"* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; } ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; } ::selection { background: rgba(125,211,252,0.2); } @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } } @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } } @media (max-width: 768px) { nav > div > div:last-child > a { display: none !important; } div[style*='repeat(4'] { grid-template-columns: 1fr 1fr !important; } div[style*='repeat(3'] { grid-template-columns: 1fr !important; } }"}</style>
+      <style>{"* { margin: 0; padding: 0; box-sizing: border-box; } html { scroll-behavior: smooth; } ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 2px; } ::selection { background: rgba(125,211,252,0.2); } @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } } @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } } @media (max-width: 768px) { .nav-desktop { display: none !important; } .nav-hamburger { display: block !important; } .hero-terminal { flex: 1 1 100% !important; min-width: 0 !important; } .pipeline-badges { flex-wrap: wrap !important; } .chat-widget { width: calc(100% - 24px) !important; left: 12px !important; right: 12px !important; bottom: 12px !important; max-height: 70vh !important; } .quem-somos-card { padding: 24px 20px !important; } section { padding-left: 16px !important; padding-right: 16px !important; } nav { padding: 0 16px !important; } div[style*='repeat(4'] { grid-template-columns: 1fr 1fr !important; gap: 10px !important; } div[style*='repeat(3'] { grid-template-columns: 1fr !important; gap: 10px !important; } } @media (max-width: 480px) { div[style*='repeat(4'] { grid-template-columns: 1fr !important; } }"}</style>
     </div>
   );
 }
