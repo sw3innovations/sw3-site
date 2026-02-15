@@ -84,6 +84,62 @@ export async function buscarURLBlob(id) {
   }
 }
 
+export async function salvarDadosLead(id, dados) {
+  try {
+    var dataPath = "previews/" + id + "_data.json";
+
+    var dadosCompletos = Object.assign({}, dados, {
+      salvo_em: new Date().toISOString()
+    });
+
+    var blob = await put(dataPath, JSON.stringify(dadosCompletos), {
+      access: "public",
+      contentType: "application/json",
+      addRandomSuffix: false
+    });
+
+    console.log("[STORE] Dados do lead salvos:", blob.url);
+
+    return {
+      success: true,
+      url: blob.url,
+      id: id
+    };
+
+  } catch (erro) {
+    console.error("[STORE ERROR] Falha ao salvar dados:", erro);
+    return {
+      success: false,
+      error: erro.message
+    };
+  }
+}
+
+export async function buscarDadosLead(id) {
+  try {
+    var dataPath = "previews/" + id + "_data.json";
+
+    var dataInfo = await head(dataPath);
+
+    if (!dataInfo || !dataInfo.url) {
+      return null;
+    }
+
+    var response = await fetch(dataInfo.url);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    var dados = await response.json();
+    return dados;
+
+  } catch (erro) {
+    console.error("[STORE] Erro ao buscar dados do lead:", erro);
+    return null;
+  }
+}
+
 export async function construirPreviewURL(id) {
   // URL pública do endpoint que serve o preview
   var baseUrl = process.env.VERCEL_URL

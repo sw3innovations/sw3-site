@@ -72,40 +72,6 @@ function logarLead(dados, pricing, resultado) {
   return log;
 }
 
-async function gerarPrototipoBackground(leadId, dados) {
-  console.log("[PREVIEW BACKGROUND] Iniciando geração para:", leadId);
-
-  try {
-    var previewGenModule = await import("./_lib/preview-gen.js");
-    var storeModule = await import("./_lib/store.js");
-
-    var resultado = await previewGenModule.gerarPrototipoHTML(dados);
-
-    if (!resultado.success) {
-      console.error("[PREVIEW BACKGROUND] Falha na geração:", resultado.error);
-      return;
-    }
-
-    var metadata = {
-      id: leadId,
-      cliente: dados.cliente.nome,
-      projeto: dados.projeto.descricao,
-      gerado_em: new Date().toISOString(),
-      tokens_used: resultado.tokens_used
-    };
-
-    var salvamento = await storeModule.salvarPrototipo(leadId, resultado.html, metadata);
-
-    if (salvamento.success) {
-      console.log("[PREVIEW BACKGROUND] Protótipo salvo com sucesso:", salvamento.url);
-    } else {
-      console.error("[PREVIEW BACKGROUND] Falha ao salvar:", salvamento.error);
-    }
-  } catch (erro) {
-    console.error("[PREVIEW BACKGROUND ERROR]", erro);
-  }
-}
-
 export default async function handler(req, res) {
   var origin = req.headers.origin;
   setCORSHeaders(res, origin);
@@ -139,18 +105,18 @@ export default async function handler(req, res) {
     // 3. Gerar ID único para o lead
     var leadId = "lead_" + Date.now();
 
-    // 4. Tentar gerar preview (opcional - não quebra se falhar)
+    // 4. Salvar dados do lead para preview on-demand (opcional - não quebra se falhar)
     var previewUrl = null;
     try {
       var storeModule = await import("./_lib/store.js");
+
+      // Salvar dados do lead no Blob (rápido, <1s)
+      await storeModule.salvarDadosLead(leadId, dados);
+
+      // Construir URL do preview (geração on-demand no GET)
       previewUrl = await storeModule.construirPreviewURL(leadId);
 
-      // Disparar geração em background (fire-and-forget)
-      gerarPrototipoBackground(leadId, dados).catch(function(erro) {
-        console.error("[PREVIEW BACKGROUND ERROR]", erro);
-      });
-
-      console.log("[LEAD] Preview URL gerada:", previewUrl);
+      console.log("[LEAD] Dados do lead salvos. Preview URL:", previewUrl);
     } catch (erroPreview) {
       console.log("[LEAD] Preview desabilitado ou falhou:", erroPreview.message);
       previewUrl = null;
