@@ -37,6 +37,8 @@ export default function ChatWidget({ show, onClose, onOpen }) {
     setIsTyping(false);
   };
 
+  var userMsgCount = messages.filter(function(m) { return m.role === "user"; }).length;
+
   if (!show) {
     return (
       <button onClick={onOpen} style={{ position: "fixed", bottom: 20, right: 20, width: 50, height: 50, borderRadius: 13, background: "var(--bg-dark)", border: "1px solid var(--border-dark)", cursor: "pointer", zIndex: 9998, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 32px rgba(0,0,0,0.15)", transition: "all 0.2s" }}
@@ -49,6 +51,7 @@ export default function ChatWidget({ show, onClose, onOpen }) {
 
   return (
     <div className="chat-widget" style={{ position: "fixed", bottom: 20, right: 20, width: 370, maxHeight: 500, background: "#fff", border: "1px solid var(--border)", borderRadius: 16, zIndex: 9999, display: "flex", flexDirection: "column", boxShadow: "0 24px 80px rgba(0,0,0,0.15)", overflow: "hidden" }}>
+      {/* Header */}
       <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--bg-dark)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <SolweLogo size={24} />
@@ -59,6 +62,8 @@ export default function ChatWidget({ show, onClose, onOpen }) {
         </div>
         <button onClick={onClose} style={{ background: "rgba(255,255,255,0.08)", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 14, cursor: "pointer", padding: "3px 7px", borderRadius: 5 }}>✕</button>
       </div>
+
+      {/* Messages */}
       <div style={{ flex: 1, overflow: "auto", padding: "12px 12px 4px", display: "flex", flexDirection: "column", gap: 8, maxHeight: 300, background: "var(--bg)" }}>
         {messages.map(function(msg, i) {
           return (
@@ -74,7 +79,13 @@ export default function ChatWidget({ show, onClose, onOpen }) {
         )}
         <div ref={chatEndRef} />
       </div>
-      {messages.length <= 2 && (
+
+      {/* Quick replies OR expand link */}
+      {userMsgCount >= 4 ? (
+        <div style={{ padding: "8px 12px 6px", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
+          <a href="/ia" style={{ display: "block", textAlign: "center", padding: "6px 12px", borderRadius: 6, background: "var(--bg-dark)", color: "#fff", textDecoration: "none", fontSize: 11, fontWeight: 600, fontFamily: "inherit" }}>Continuar em tela cheia →</a>
+        </div>
+      ) : messages.length <= 2 ? (
         <div style={{ padding: "0 12px 6px", display: "flex", flexWrap: "wrap", gap: 4, background: "var(--bg)" }}>
           {QUICK_REPLIES.map(function(qr, i) {
             return (
@@ -85,7 +96,9 @@ export default function ChatWidget({ show, onClose, onOpen }) {
             );
           })}
         </div>
-      )}
+      ) : null}
+
+      {/* Input */}
       <div style={{ padding: "8px 12px", borderTop: "1px solid var(--border)", display: "flex", gap: 7, background: "#fff" }}>
         <input value={chatInput} onChange={function(e) { setChatInput(e.target.value); }} onKeyDown={function(e) { if (e.key === "Enter") sendMessage(chatInput); }} placeholder="Descreva o que precisa..." style={{ flex: 1, background: "var(--bg)", border: "1px solid var(--border)", borderRadius: 7, padding: "8px 11px", color: "var(--text)", fontSize: 12, outline: "none", fontFamily: "inherit" }} />
         <button onClick={function() { sendMessage(chatInput); }} disabled={isTyping} style={{ background: "var(--bg-dark)", border: "none", borderRadius: 7, width: 36, display: "flex", alignItems: "center", justifyContent: "center", cursor: isTyping ? "not-allowed" : "pointer", fontSize: 14, color: "#fff", opacity: isTyping ? 0.4 : 1, fontWeight: 700 }}>→</button>
