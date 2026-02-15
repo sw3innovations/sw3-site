@@ -5,8 +5,7 @@
 // ═══════════════════════════════════════════════════════
 
 import { gerarPrototipoHTML } from "./_lib/preview-gen.js";
-import { salvarPrototipo, construirPreviewURL } from "./_lib/store.js";
-import { get } from "@vercel/blob";
+import { salvarPrototipo, construirPreviewURL, buscarURLBlob } from "./_lib/store.js";
 
 var ALLOWED_ORIGINS = [
   "https://sw3.tec.br",
@@ -35,20 +34,25 @@ async function handleGET(req, res) {
   }
 
   try {
-    var blobPath = "previews/" + id + ".html";
+    console.log("[PREVIEW-GET] Buscando preview:", id);
 
-    console.log("[PREVIEW-GET] Buscando:", blobPath);
+    // Buscar URL do blob armazenada nos metadados
+    var blobUrl = await buscarURLBlob(id);
 
-    var blob = await get(blobPath);
-
-    if (!blob) {
-      return res.status(404).json({
-        error: "Preview não encontrado",
-        id: id
-      });
+    if (!blobUrl) {
+      throw new Error("URL do blob não encontrada");
     }
 
-    var html = await blob.text();
+    console.log("[PREVIEW-GET] Fazendo fetch do blob:", blobUrl);
+
+    // Fazer fetch do HTML na URL pública do blob
+    var response = await fetch(blobUrl);
+
+    if (!response.ok) {
+      throw new Error("Falha ao buscar blob: " + response.status);
+    }
+
+    var html = await response.text();
 
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=3600");
