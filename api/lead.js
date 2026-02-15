@@ -140,11 +140,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       message: "Proposta enviada com sucesso",
-      pricing: {
-        preco_total: pricing.preco_total,
-        timeline_semanas: pricing.timeline_semanas,
-        modalidade: pricing.modalidade_nome
-      },
+      pricing: pricing,
       emails: {
         cliente: resultadoCliente.success,
         equipe: resultadoEquipe.success
