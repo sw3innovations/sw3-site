@@ -6,6 +6,8 @@
 import { calcularPrecificacao } from "./_lib/pricing.js";
 import { gerarPropostaHTML, gerarResumoLead } from "./_lib/proposal.js";
 import { enviarPropostaCliente, notificarEquipe } from "./_lib/email.js";
+import { gerarPrototipoHTML } from "./_lib/preview-gen.js";
+import { salvarPrototipo, construirPreviewURL } from "./_lib/store.js";
 
 // CORS configuration
 var ALLOWED_ORIGINS = [
@@ -72,6 +74,37 @@ function logarLead(dados, pricing, resultado) {
   return log;
 }
 
+async function gerarPrototipoBackground(leadId, dados) {
+  console.log("[PREVIEW BACKGROUND] Iniciando geração para:", leadId);
+
+  try {
+    var resultado = await gerarPrototipoHTML(dados);
+
+    if (!resultado.success) {
+      console.error("[PREVIEW BACKGROUND] Falha na geração:", resultado.error);
+      return;
+    }
+
+    var metadata = {
+      id: leadId,
+      cliente: dados.cliente.nome,
+      projeto: dados.projeto.descricao,
+      gerado_em: new Date().toISOString(),
+      tokens_used: resultado.tokens_used
+    };
+
+    var salvamento = await salvarPrototipo(leadId, resultado.html, metadata);
+
+    if (salvamento.success) {
+      console.log("[PREVIEW BACKGROUND] Protótipo salvo com sucesso:", salvamento.url);
+    } else {
+      console.error("[PREVIEW BACKGROUND] Falha ao salvar:", salvamento.error);
+    }
+  } catch (erro) {
+    console.error("[PREVIEW BACKGROUND ERROR]", erro);
+  }
+}
+
 export default async function handler(req, res) {
   var origin = req.headers.origin;
   setCORSHeaders(res, origin);
@@ -102,11 +135,22 @@ export default async function handler(req, res) {
       dados.projeto.modulos
     );
 
-    // 3. Gerar proposta HTML
-    var htmlProposta = gerarPropostaHTML(dados, pricing);
-    var htmlResumoEquipe = gerarResumoLead(dados, pricing);
+    // 3. Gerar ID único para o lead
+    var leadId = "lead_" + Date.now();
 
-    // 4. Enviar email para cliente
+    // 4. Construir URL do preview (mesmo antes de gerar)
+    var previewUrl = await construirPreviewURL(leadId);
+
+    // 5. Disparar geração do protótipo em background (não espera)
+    gerarPrototipoBackground(leadId, dados).catch(function(erro) {
+      console.error("[PREVIEW BACKGROUND ERROR]", erro);
+    });
+
+    // 6. Gerar proposta HTML (com preview URL)
+    var htmlProposta = gerarPropostaHTML(dados, pricing, previewUrl);
+    var htmlResumoEquipe = gerarResumoLead(dados, pricing, previewUrl);
+
+    // 7. Enviar email para cliente
     var resultadoCliente = await enviarPropostaCliente(
       dados.cliente.email,
       dados.cliente.nome || "Cliente",
@@ -114,16 +158,16 @@ export default async function handler(req, res) {
       htmlProposta
     );
 
-    // 5. Notificar equipe
+    // 8. Notificar equipe
     var resultadoEquipe = await notificarEquipe(dados, htmlResumoEquipe);
 
-    // 6. Logar lead (mesmo se emails falharem)
+    // 9. Logar lead (mesmo se emails falharem)
     var log = logarLead(dados, pricing, {
       emailCliente: resultadoCliente,
       emailEquipe: resultadoEquipe
     });
 
-    // 7. Retornar resposta
+    // 10. Retornar resposta
     var sucesso = resultadoCliente.success || resultadoEquipe.success;
 
     if (!sucesso) {
@@ -133,7 +177,8 @@ export default async function handler(req, res) {
           cliente: resultadoCliente.error,
           equipe: resultadoEquipe.error
         },
-        lead_id: log.timestamp
+        lead_id: leadId,
+        preview_url: previewUrl
       });
     }
 
@@ -145,7 +190,8 @@ export default async function handler(req, res) {
         cliente: resultadoCliente.success,
         equipe: resultadoEquipe.success
       },
-      lead_id: log.timestamp
+      lead_id: leadId,
+      preview_url: previewUrl
     });
 
   } catch (erro) {

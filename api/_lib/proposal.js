@@ -5,7 +5,7 @@
 
 import { formatarPreco, formatarTimeline } from "./pricing.js";
 
-export function gerarPropostaHTML(dados, pricing) {
+export function gerarPropostaHTML(dados, pricing, previewUrl) {
   var html = [
     '<!DOCTYPE html>',
     '<html lang="pt-BR">',
@@ -110,8 +110,25 @@ export function gerarPropostaHTML(dados, pricing) {
   }
 
   html = html.concat([
-    '</div>',
+    '</div>'
+  ]);
 
+  // Preview interativo (se disponível)
+  if (previewUrl) {
+    html = html.concat([
+      '<div style="background: linear-gradient(135deg, #7dd3fc 0%, #22c55e 100%); padding: 32px; border-radius: 12px; text-align: center; margin: 32px 0;">',
+      '<div style="font-size: 14px; color: #0f172a; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 600;">🎨 Exclusivo SOLW3</div>',
+      '<div style="font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">Veja como ficaria seu sistema</div>',
+      '<p style="font-size: 15px; color: #0f172a; margin-bottom: 24px; opacity: 0.9;">Navegue no protótipo interativo do seu projeto gerado por IA</p>',
+      '<a href="' + previewUrl + '" style="display: inline-block; background: #0f172a; color: #fff; padding: 16px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 16px; transition: transform 0.2s;">',
+      'Abrir Protótipo Navegável →',
+      '</a>',
+      '<div style="margin-top: 16px; font-size: 12px; color: #0f172a; opacity: 0.7;">Protótipo gerado em tempo real pela SOLW3 IA</div>',
+      '</div>'
+    ]);
+  }
+
+  html = html.concat([
     // Próximos Passos
     '<div class="cta-box">',
     '<div class="cta-title">Próximos Passos</div>',
@@ -140,7 +157,7 @@ export function gerarPropostaHTML(dados, pricing) {
   return html.join('\n');
 }
 
-export function gerarResumoLead(dados, pricing) {
+export function gerarResumoLead(dados, pricing, previewUrl) {
   var linhas = [
     '<div style="font-family: Outfit, sans-serif; color: #1e293b;">',
     '<h2 style="color: #0f172a;">🔔 Novo Lead SOLW3</h2>',
@@ -165,7 +182,15 @@ export function gerarResumoLead(dados, pricing) {
     '</ul>',
     '<h3 style="margin-top: 20px;">Conversa</h3>',
     '<p><strong>Mensagens trocadas:</strong> ' + dados.conversa.mensagens + '</p>',
-    '<p><strong>Resumo:</strong> ' + dados.conversa.resumo + '</p>',
+    '<p><strong>Resumo:</strong> ' + dados.conversa.resumo + '</p>'
+  ]);
+
+  if (previewUrl) {
+    linhas.push('<h3 style="margin-top: 20px;">Protótipo</h3>');
+    linhas.push('<p><a href="' + previewUrl + '" style="color: #7dd3fc; text-decoration: none; font-weight: 600;">Ver protótipo interativo →</a></p>');
+  }
+
+  linhas = linhas.concat([
     '<div style="margin-top: 24px; padding: 16px; background: #ecfdf5; border-left: 4px solid #22c55e; border-radius: 4px;">',
     '<p style="margin: 0;"><strong>Próxima ação:</strong> Entrar em contato com o cliente pelo WhatsApp ou email</p>',
     '</div>',
