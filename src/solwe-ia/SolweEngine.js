@@ -1,7 +1,6 @@
 import { SOLW3_SYSTEM, getFallback } from "./SolwePrompts";
 
-var API_URL = "https://api.anthropic.com/v1/messages";
-var MODEL = "claude-sonnet-4-20250514";
+var API_URL = "/api/chat";
 
 export async function sendToAPI(messages) {
   try {
@@ -9,8 +8,6 @@ export async function sendToAPI(messages) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 1000,
         system: SOLW3_SYSTEM,
         messages: messages,
       }),
