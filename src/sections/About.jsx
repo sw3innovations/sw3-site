@@ -6,8 +6,8 @@ var INFO = [
 
 export default function About() {
   return (
-    <section style={{ padding: "80px 20px", background: "var(--bg)" }}>
-      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
+    <section style={{ padding: "80px 40px", background: "var(--bg)" }}>
+      <div style={{ margin: "0 auto" }}>
         <div className="quem-somos-card" style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 14, padding: "44px 48px", display: "flex", alignItems: "center", gap: 48, flexWrap: "wrap", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
           <div style={{ flex: 1, minWidth: 280 }}>
             <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12 }}>QUEM SOMOS</div>

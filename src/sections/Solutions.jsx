@@ -9,9 +9,10 @@ var MODALITIES = [
 
 export default function Solutions() {
   var navigate = useNavigate();
+
   return (
-    <section id="solucoes" style={{ padding: "80px 32px 100px", background: "var(--bg)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <section id="solucoes" style={{ padding: "80px 40px 100px", background: "var(--bg)" }}>
+      <div style={{ margin: "0 auto" }}>
         <div style={{ marginBottom: 44 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>O QUE FAZEMOS</div>
           <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>4 formas de transformar seu negócio</h2>

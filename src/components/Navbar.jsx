@@ -18,8 +18,8 @@ export default function Navbar({ scrollY }) {
 
   return (
     <>
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 32px", background: navSolid ? "rgba(255,255,255,0.95)" : "rgba(15,23,42,0.0)", backdropFilter: navSolid ? "blur(20px)" : "none", borderBottom: navSolid ? "1px solid var(--border)" : "none", transition: "all 0.4s ease" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 40px", background: navSolid ? "rgba(255,255,255,0.95)" : "rgba(15,23,42,0.0)", backdropFilter: navSolid ? "blur(20px)" : "none", borderBottom: navSolid ? "1px solid var(--border)" : "none", transition: "all 0.4s ease" }}>
+        <div style={{ margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: navSolid ? "var(--text)" : "#fff" }}>
             <Logo size={30} />
             <div>
