@@ -41,3 +41,59 @@ export function detectModality(text) {
   if (lower.indexOf("staff") !== -1 || lower.indexOf("squad") !== -1 || lower.indexOf("dev") !== -1) return "D";
   return null;
 }
+
+export function extrairRequisitos(history) {
+  var requisitos = [];
+  var textoCompleto = "";
+
+  history.forEach(function(msg) {
+    if (msg.role === "user") {
+      textoCompleto = textoCompleto + " " + msg.content;
+    }
+  });
+
+  var palavrasChave = ["quero", "preciso", "sistema", "funcionalidade", "integração", "dashboard", "relatório", "pagamento", "cadastro", "chat", "whatsapp", "email"];
+
+  var frases = textoCompleto.split(/[.!?]/);
+  frases.forEach(function(frase) {
+    var fraseLower = frase.toLowerCase();
+    palavrasChave.forEach(function(palavra) {
+      if (fraseLower.indexOf(palavra) !== -1 && frase.trim().length > 20 && requisitos.indexOf(frase.trim()) === -1) {
+        requisitos.push(frase.trim());
+      }
+    });
+  });
+
+  return requisitos.slice(0, 8);
+}
+
+export function gerarResumoConversa(history) {
+  var userMessages = [];
+  history.forEach(function(msg) {
+    if (msg.role === "user") {
+      userMessages.push(msg.content);
+    }
+  });
+  return userMessages.join(" | ");
+}
+
+export async function enviarLead(dadosLead) {
+  try {
+    var response = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dadosLead)
+    });
+
+    if (!response.ok) {
+      var errorData = await response.json();
+      throw new Error(errorData.error || "Erro ao enviar proposta");
+    }
+
+    var result = await response.json();
+    return { ok: true, data: result };
+  } catch (err) {
+    console.error("Erro ao enviar lead:", err);
+    return { ok: false, error: err.message };
+  }
+}

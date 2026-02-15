@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SolweLogo, Logo } from "../components/Logo";
-import { getReply, detectModality } from "../solwe-ia/SolweEngine";
+import { getReply, detectModality, enviarLead, extrairRequisitos, gerarResumoConversa } from "../solwe-ia/SolweEngine";
 import { WELCOME_MESSAGE, QUICK_REPLIES, WHATSAPP_URL } from "../solwe-ia/SolwePrompts";
 
 var MODALITY_INFO = {
@@ -29,6 +29,29 @@ function getQuickReplies(modality, msgCount) {
 function shouldShowWhatsApp(text) {
   var lower = text.toLowerCase();
   return lower.indexOf("botão abaixo") !== -1 || lower.indexOf("falar direto") !== -1 || lower.indexOf("equipe pelo") !== -1;
+}
+
+function detectarEmail(text) {
+  var emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  var match = text.match(emailRegex);
+  return match ? match[0] : null;
+}
+
+function extrairNome(text) {
+  var palavrasChave = ["meu nome é", "me chamo", "sou o", "sou a"];
+  var textLower = text.toLowerCase();
+
+  for (var i = 0; i < palavrasChave.length; i++) {
+    var idx = textLower.indexOf(palavrasChave[i]);
+    if (idx !== -1) {
+      var resto = text.substring(idx + palavrasChave[i].length).trim();
+      var primeiroNome = resto.split(" ")[0].replace(/[^a-zA-Z]/g, "");
+      if (primeiroNome.length > 2) {
+        return primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
+      }
+    }
+  }
+  return null;
 }
 
 function MessageBubble({ msg }) {
@@ -78,6 +101,18 @@ export default function SolweIA() {
   var showSidebar = _sidebar[0];
   var setShowSidebar = _sidebar[1];
 
+  var _email = useState(null);
+  var clienteEmail = _email[0];
+  var setClienteEmail = _email[1];
+
+  var _nome = useState(null);
+  var clienteNome = _nome[0];
+  var setClienteNome = _nome[1];
+
+  var _propostaEnviada = useState(false);
+  var propostaEnviada = _propostaEnviada[0];
+  var setPropostaEnviada = _propostaEnviada[1];
+
   var chatEndRef = useRef(null);
   var historyRef = useRef([]);
   var inputRef = useRef(null);
@@ -100,6 +135,16 @@ export default function SolweIA() {
     var detected = detectModality(u);
     if (detected && !modality) setModality(detected);
 
+    var nomeDetectado = extrairNome(u);
+    if (nomeDetectado && !clienteNome) {
+      setClienteNome(nomeDetectado);
+    }
+
+    var emailDetectado = detectarEmail(u);
+    if (emailDetectado && !clienteEmail && !propostaEnviada) {
+      setClienteEmail(emailDetectado);
+    }
+
     var reply = await getReply(u, historyRef.current);
     historyRef.current.push({ role: "user", content: u });
     historyRef.current.push({ role: "assistant", content: reply });
@@ -110,6 +155,53 @@ export default function SolweIA() {
     }
 
     setMessages(function(p) { return p.concat([{ role: "assistant", text: reply }]); });
+
+    if (emailDetectado && modality && !propostaEnviada) {
+      setTimeout(async function() {
+        setMessages(function(p) { return p.concat([{ role: "assistant", text: "Gerando sua proposta personalizada..." }]); });
+
+        var requisitos = extrairRequisitos(historyRef.current);
+        var resumo = gerarResumoConversa(historyRef.current);
+        var modulos = Math.max(requisitos.length, 3);
+
+        var projetoDescricao = resumo.substring(0, 200);
+
+        var dadosLead = {
+          cliente: {
+            email: emailDetectado,
+            nome: clienteNome || "Cliente"
+          },
+          projeto: {
+            modalidade: modality,
+            descricao: projetoDescricao,
+            requisitos: requisitos.length > 0 ? requisitos : ["Sistema personalizado conforme conversado"],
+            stack_sugerida: MODALITY_INFO[modality].stack,
+            timeline_estimada: MODALITY_INFO[modality].time,
+            modulos: modulos
+          },
+          conversa: {
+            mensagens: messages.length,
+            resumo: resumo.substring(0, 500)
+          }
+        };
+
+        var resultado = await enviarLead(dadosLead);
+
+        if (resultado.ok) {
+          setPropostaEnviada(true);
+          setMessages(function(p) { return p.concat([{
+            role: "assistant",
+            text: "Proposta enviada com sucesso! Verifique seu email (" + emailDetectado + "). O investimento estimado é de " + resultado.data.pricing.preco_total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) + " com timeline de " + resultado.data.pricing.timeline_semanas + " semanas. Em breve nossa equipe entrará em contato!"
+          }]); });
+        } else {
+          setMessages(function(p) { return p.concat([{
+            role: "assistant",
+            text: "Ops, tive um problema ao enviar a proposta. Por favor, entre em contato direto com a equipe pelo botão abaixo."
+          }]); });
+        }
+      }, 2000);
+    }
+
     setIsTyping(false);
   };
 
