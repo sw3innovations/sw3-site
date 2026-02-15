@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import TerminalAnimation from "./TerminalAnimation";
 
-export default function Hero({ onOpenChat }) {
+export default function Hero() {
   return (
     <section style={{ background: "var(--bg-dark)", color: "#fff", position: "relative", overflow: "hidden", padding: "140px 32px 100px", minHeight: 560 }}>
       <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "linear-gradient(rgba(125,211,252,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(125,211,252,0.3) 1px, transparent 1px)", backgroundSize: "60px 60px", maskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent)", WebkitMaskImage: "radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent)" }} />
@@ -11,7 +12,7 @@ export default function Hero({ onOpenChat }) {
           <h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.04em", marginBottom: 20 }}>Descreva sua ideia.<br /><span style={{ color: "var(--accent)" }}>A IA transforma em sistema.</span></h1>
           <p style={{ fontSize: 16, color: "var(--text-light2)", lineHeight: 1.7, marginBottom: 36, maxWidth: 560 }}>Crie do zero, melhore o que já existe, ou reforce seu time. Converse com a SOLW3 IA, receba uma proposta completa, e acompanhe agentes de IA construindo cada etapa.</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button onClick={onOpenChat} style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "var(--display)" }}>Começar conversa</button>
+            <Link to="/ia" style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "var(--display)", textDecoration: "none", display: "inline-block" }}>Começar conversa</Link>
             <a href="https://wa.me/5583986903799?text=Quero%20conversar%20sobre%20meu%20projeto" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>WhatsApp</a>
           </div>
           <div className="pipeline-badges" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 40 }}>

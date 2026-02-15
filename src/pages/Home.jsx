@@ -6,16 +6,16 @@ import Lab from "../sections/Lab";
 import About from "../sections/About";
 import Contact from "../sections/Contact";
 
-export default function Home({ onOpenChat }) {
+export default function Home() {
   return (
     <>
-      <Hero onOpenChat={onOpenChat} />
-      <Solutions onOpenChat={onOpenChat} />
+      <Hero />
+      <Solutions />
       <HowItWorks />
       <PostDelivery />
       <Lab />
       <About />
-      <Contact onOpenChat={onOpenChat} />
+      <Contact />
     </>
   );
 }

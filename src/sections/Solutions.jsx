@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 var MODALITIES = [
   { icon: "✦", title: "Projeto Novo", desc: "Criar sistema do zero a partir de uma ideia. IA conduz requisitos, precifica e propõe.", ticket: "Sob consulta", time: "2–20 semanas", color: "#7dd3fc" },
   { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico técnico automático com score de saúde 0–100.", ticket: "Sob consulta", time: "4–16 semanas", color: "#a78bfa" },
@@ -5,7 +7,8 @@ var MODALITIES = [
   { icon: "⊞", title: "Braço de Dev", desc: "Squad sob demanda dentro do seu repo e processos. Devs com agentes IA = 2-3x output.", ticket: "Sob consulta", time: "Mín. 3 meses", color: "#fbbf24" },
 ];
 
-export default function Solutions({ onOpenChat }) {
+export default function Solutions() {
+  var navigate = useNavigate();
   return (
     <section id="solucoes" style={{ padding: "80px 32px 100px", background: "var(--bg)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -17,7 +20,7 @@ export default function Solutions({ onOpenChat }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {MODALITIES.map(function(mod, i) {
             return (
-              <div key={i} onClick={onOpenChat} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
+              <div key={i} onClick={function() { navigate("/ia"); }} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
                 onMouseEnter={function(e) { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = mod.color + "40"; }}
                 onMouseLeave={function(e) { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "var(--border)"; }}
               >

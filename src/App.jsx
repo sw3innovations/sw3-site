@@ -28,8 +28,8 @@ function HomeLayout() {
 
   return (
     <>
-      <Navbar scrollY={scrollY} onOpenChat={openChat} />
-      <Home onOpenChat={openChat} />
+      <Navbar scrollY={scrollY} />
+      <Home />
       <Footer />
       <ChatWidget show={showChat} onClose={closeChat} onOpen={openChat} />
     </>

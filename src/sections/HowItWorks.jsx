@@ -7,8 +7,8 @@ var STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section id="como-funciona" style={{ padding: "100px 32px", background: "var(--bg-dark)", color: "#fff" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+    <section id="como-funciona" style={{ padding: "100px 20px", background: "var(--bg-dark)", color: "#fff" }}>
+      <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--accent)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>COMO FUNCIONA</div>
           <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>De conversa a sistema em horas, não meses</h2>
