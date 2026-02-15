@@ -42,10 +42,10 @@ async function testarPreview() {
   console.log("");
 
   try {
-    console.log("📤 Enviando POST para https://sw3.tec.br/api/lead ...");
+    console.log("📤 Enviando POST para https://www.sw3.tec.br/api/lead ...");
     console.log("");
 
-    var response = await fetch("https://sw3.tec.br/api/lead", {
+    var response = await fetch("https://www.sw3.tec.br/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payloadTeste)
