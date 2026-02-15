@@ -14,7 +14,7 @@ export default function Hero() {
           <p style={{ fontSize: 16, color: "var(--text-light2)", lineHeight: 1.7, marginBottom: 36, maxWidth: 560 }}>Crie do zero, melhore o que já existe, ou reforce seu time. Converse com a SOLW3 IA, receba uma proposta completa, e acompanhe agentes de IA construindo cada etapa.</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Link to="/ia" style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "var(--display)", textDecoration: "none", display: "inline-block" }}>Começar conversa</Link>
-            <a href="https://wa.me/5583986903799?text=Quero%20conversar%20sobre%20meu%20projeto" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>WhatsApp</a>
+            <a href="https://wa.me/5583981751871?text=Oi%2C%20vim%20do%20site%20SOLW3" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>WhatsApp</a>
           </div>
           <div className="pipeline-badges" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 40 }}>
             {["Conversa", "Proposta", "Execução", "Entrega", "Suporte"].map(function(s, i) {

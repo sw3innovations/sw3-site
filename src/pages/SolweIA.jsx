@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { SolweLogo, Logo } from "../components/Logo";
 import { getReply, detectModality } from "../solwe-ia/SolweEngine";
-import { WELCOME_MESSAGE, QUICK_REPLIES } from "../solwe-ia/SolwePrompts";
+import { WELCOME_MESSAGE, QUICK_REPLIES, WHATSAPP_URL } from "../solwe-ia/SolwePrompts";
 
 var MODALITY_INFO = {
   A: { label: "Projeto Novo", color: "#7dd3fc", icon: "✦", stack: "React, FastAPI, AWS", time: "2–20 semanas" },
@@ -17,13 +17,44 @@ var STAGE_REPLIES = {
   B: ["Meu sistema é legado", "Quero migrar de stack", "Preciso de diagnóstico"],
   C: ["Quero adicionar IA", "Preciso de integração", "Nova feature específica"],
   D: ["Preciso de frontend", "Preciso de backend", "Full-stack"],
-  deep: ["Gerar proposta", "Falar no WhatsApp", "Mais detalhes"],
+  deep: ["Gerar protótipo", "Ver cases entregues", "Continuar mapeando"],
 };
 
 function getQuickReplies(modality, msgCount) {
   if (msgCount >= 8) return STAGE_REPLIES.deep;
   if (modality && STAGE_REPLIES[modality]) return STAGE_REPLIES[modality];
   return STAGE_REPLIES.initial;
+}
+
+function shouldShowWhatsApp(text) {
+  var lower = text.toLowerCase();
+  return lower.indexOf("botão abaixo") !== -1 || lower.indexOf("falar direto") !== -1 || lower.indexOf("equipe pelo") !== -1;
+}
+
+function MessageBubble({ msg }) {
+  var isUser = msg.role === "user";
+  var showWA = !isUser && shouldShowWhatsApp(msg.text);
+
+  return (
+    <div style={{ display: "flex", justifyContent: isUser ? "flex-end" : "flex-start", animation: "fadeIn 0.3s ease" }}>
+      {!isUser && (
+        <div style={{ width: 28, height: 28, borderRadius: 8, overflow: "hidden", marginRight: 10, flexShrink: 0, marginTop: 2 }}>
+          <SolweLogo size={28} />
+        </div>
+      )}
+      <div style={{ maxWidth: "75%" }}>
+        <div style={{ padding: "10px 16px", borderRadius: 14, background: isUser ? "var(--bg-dark)" : "var(--surface)", color: isUser ? "#fff" : "var(--text)", fontSize: 13.5, lineHeight: 1.6, border: isUser ? "none" : "1px solid var(--border)", borderBottomRightRadius: isUser ? 4 : 14, borderBottomLeftRadius: isUser ? 14 : 4, boxShadow: isUser ? "none" : "0 1px 3px rgba(0,0,0,0.04)" }}>{msg.text}</div>
+        {showWA && (
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 8, padding: "8px 16px", borderRadius: 8, background: "#25D366", color: "#fff", textDecoration: "none", fontSize: 12, fontWeight: 600, fontFamily: "var(--display)", transition: "opacity 0.2s" }}
+            onMouseEnter={function(e) { e.currentTarget.style.opacity = "0.85"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.opacity = "1"; }}
+          >
+            <span style={{ fontSize: 16 }}>{"💬"}</span> Falar no WhatsApp
+          </a>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default function SolweIA() {
@@ -67,9 +98,7 @@ export default function SolweIA() {
     setIsTyping(true);
 
     var detected = detectModality(u);
-    if (detected && !modality) {
-      setModality(detected);
-    }
+    if (detected && !modality) setModality(detected);
 
     var reply = await getReply(u, historyRef.current);
     historyRef.current.push({ role: "user", content: u });
@@ -92,13 +121,13 @@ export default function SolweIA() {
     <div style={{ height: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)", fontFamily: "var(--display)", "--accent": "#7dd3fc", "--accent2": "#94a3b8", "--navy": "#475569", "--bg": "#fafafa", "--bg-dark": "#0f172a", "--bg-dark2": "#1e293b", "--surface": "#ffffff", "--surface-dark": "#1e293b", "--border": "rgba(0,0,0,0.08)", "--border-dark": "rgba(255,255,255,0.08)", "--text": "#1e293b", "--text2": "#64748b", "--text3": "#94a3b8", "--text-light": "#e2e8f0", "--text-light2": "#94a3b8", "--mono": "'JetBrains Mono', monospace", "--display": "'Outfit', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* ── Header ── */}
+      {/* Header */}
       <div style={{ background: "var(--bg-dark)", borderBottom: "1px solid var(--border-dark)", padding: "0 24px", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <SolweLogo size={28} />
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", letterSpacing: "-0.02em" }}>SOLW3 IA</div>
-            <div style={{ fontSize: 8, color: "var(--accent)", fontFamily: "var(--mono)", fontWeight: 500 }}>● Online — Assistente de projetos</div>
+            <div style={{ fontSize: 8, color: "var(--accent)", fontFamily: "var(--mono)", fontWeight: 500 }}>● Online — Consultora de projetos</div>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -118,29 +147,18 @@ export default function SolweIA() {
         </div>
       </div>
 
-      {/* ── Main area ── */}
+      {/* Main area */}
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
 
-        {/* ── Chat ── */}
+        {/* Chat */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
 
           {/* Messages */}
           <div style={{ flex: 1, overflow: "auto", padding: "24px 24px 8px" }}>
             <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexDirection: "column", gap: 12 }}>
               {messages.map(function(msg, i) {
-                var isUser = msg.role === "user";
-                return (
-                  <div key={i} style={{ display: "flex", justifyContent: isUser ? "flex-end" : "flex-start", animation: "fadeIn 0.3s ease" }}>
-                    {!isUser && (
-                      <div style={{ width: 28, height: 28, borderRadius: 8, overflow: "hidden", marginRight: 10, flexShrink: 0, marginTop: 2 }}>
-                        <SolweLogo size={28} />
-                      </div>
-                    )}
-                    <div style={{ maxWidth: "75%", padding: "10px 16px", borderRadius: 14, background: isUser ? "var(--bg-dark)" : "var(--surface)", color: isUser ? "#fff" : "var(--text)", fontSize: 13.5, lineHeight: 1.6, border: isUser ? "none" : "1px solid var(--border)", borderBottomRightRadius: isUser ? 4 : 14, borderBottomLeftRadius: isUser ? 14 : 4, boxShadow: isUser ? "none" : "0 1px 3px rgba(0,0,0,0.04)" }}>{msg.text}</div>
-                  </div>
-                );
+                return <MessageBubble key={i} msg={msg} />;
               })}
-
               {isTyping && (
                 <div style={{ display: "flex", animation: "fadeIn 0.3s ease" }}>
                   <div style={{ width: 28, height: 28, borderRadius: 8, overflow: "hidden", marginRight: 10, flexShrink: 0 }}>
@@ -159,17 +177,10 @@ export default function SolweIA() {
           <div style={{ padding: "0 24px 8px" }}>
             <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 6 }}>
               {quickReplies.map(function(qr, i) {
-                var isAction = qr === "Gerar proposta" || qr === "Falar no WhatsApp";
                 return (
-                  <button key={i} onClick={function() {
-                    if (qr === "Falar no WhatsApp") {
-                      window.open("https://wa.me/5583986903799?text=Quero%20conversar%20sobre%20meu%20projeto", "_blank");
-                      return;
-                    }
-                    sendMessage(qr);
-                  }} style={{ background: isAction ? "var(--bg-dark)" : "var(--surface)", border: "1px solid " + (isAction ? "var(--bg-dark)" : "var(--border)"), color: isAction ? "#fff" : "var(--text2)", padding: "6px 14px", borderRadius: 20, fontSize: 11.5, cursor: "pointer", fontFamily: "inherit", fontWeight: isAction ? 600 : 400, transition: "all 0.2s" }}
-                    onMouseEnter={function(e) { if (!isAction) { e.target.style.borderColor = "var(--navy)"; e.target.style.color = "var(--text)"; } }}
-                    onMouseLeave={function(e) { if (!isAction) { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--text2)"; } }}
+                  <button key={i} onClick={function() { sendMessage(qr); }} style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--text2)", padding: "6px 14px", borderRadius: 20, fontSize: 11.5, cursor: "pointer", fontFamily: "inherit", fontWeight: 400, transition: "all 0.2s" }}
+                    onMouseEnter={function(e) { e.target.style.borderColor = "var(--navy)"; e.target.style.color = "var(--text)"; }}
+                    onMouseLeave={function(e) { e.target.style.borderColor = "var(--border)"; e.target.style.color = "var(--text2)"; }}
                   >{qr}</button>
                 );
               })}
@@ -188,10 +199,8 @@ export default function SolweIA() {
           </div>
         </div>
 
-        {/* ── Sidebar (desktop) ── */}
+        {/* Sidebar desktop */}
         <div className="ia-sidebar" style={{ width: 280, borderLeft: "1px solid var(--border)", background: "#fff", padding: "24px 20px", display: "flex", flexDirection: "column", gap: 20, overflow: "auto", flexShrink: 0 }}>
-
-          {/* Status */}
           <div>
             <div style={{ fontFamily: "var(--mono)", fontSize: 9, color: "var(--text3)", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>STATUS</div>
             {modInfo ? (
@@ -221,8 +230,6 @@ export default function SolweIA() {
               </div>
             )}
           </div>
-
-          {/* Modalidades */}
           <div>
             <div style={{ fontFamily: "var(--mono)", fontSize: 9, color: "var(--text3)", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>MODALIDADES</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -238,14 +245,12 @@ export default function SolweIA() {
               })}
             </div>
           </div>
-
-          {/* Actions */}
           <div style={{ marginTop: "auto" }}>
-            <a href="https://wa.me/5583986903799?text=Quero%20conversar%20sobre%20meu%20projeto" target="_blank" rel="noopener noreferrer" style={{ display: "block", background: "var(--bg-dark)", color: "#fff", textDecoration: "none", padding: "10px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, textAlign: "center", marginBottom: 8, fontFamily: "var(--display)" }}>Falar no WhatsApp</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "#25D366", color: "#fff", textDecoration: "none", padding: "10px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, fontFamily: "var(--display)", marginBottom: 8 }}>
+              <span style={{ fontSize: 14 }}>{"💬"}</span> WhatsApp
+            </a>
             <a href="mailto:admin@sw3.tec.br" style={{ display: "block", background: "var(--bg)", color: "var(--text2)", textDecoration: "none", padding: "10px 16px", borderRadius: 8, fontSize: 12, fontWeight: 500, textAlign: "center", border: "1px solid var(--border)", fontFamily: "var(--display)" }}>admin@sw3.tec.br</a>
           </div>
-
-          {/* Footer */}
           <div style={{ paddingTop: 16, borderTop: "1px solid var(--border)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <Logo size={14} />
@@ -255,9 +260,9 @@ export default function SolweIA() {
         </div>
       </div>
 
-      {/* ── Mobile sidebar overlay ── */}
+      {/* Mobile sidebar overlay */}
       {showSidebar && (
-        <div className="ia-sidebar-mobile" style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,0.4)" }} onClick={function() { setShowSidebar(false); }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,0.4)" }} onClick={function() { setShowSidebar(false); }}>
           <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 280, background: "#fff", padding: "24px 20px", overflow: "auto", boxShadow: "-8px 0 32px rgba(0,0,0,0.1)" }} onClick={function(e) { e.stopPropagation(); }}>
             {modInfo ? (
               <div style={{ background: modInfo.color + "08", border: "1px solid " + modInfo.color + "20", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
@@ -273,7 +278,9 @@ export default function SolweIA() {
             ) : (
               <p style={{ fontSize: 12, color: "var(--text3)", marginBottom: 16 }}>Descreva seu projeto para detectar a modalidade.</p>
             )}
-            <a href="https://wa.me/5583986903799?text=Quero%20conversar%20sobre%20meu%20projeto" target="_blank" rel="noopener noreferrer" style={{ display: "block", background: "var(--bg-dark)", color: "#fff", textDecoration: "none", padding: "10px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, textAlign: "center", fontFamily: "var(--display)" }}>Falar no WhatsApp</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "#25D366", color: "#fff", textDecoration: "none", padding: "10px 16px", borderRadius: 8, fontSize: 12, fontWeight: 600, fontFamily: "var(--display)" }}>
+              <span style={{ fontSize: 14 }}>{"💬"}</span> WhatsApp
+            </a>
           </div>
         </div>
       )}
