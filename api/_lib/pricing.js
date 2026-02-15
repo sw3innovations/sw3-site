@@ -29,12 +29,14 @@ export function calcularPrecificacao(modalidade, modulos) {
     resultado.preco_total = config.base_mensal * config.minimo_meses;
     resultado.timeline_meses = config.minimo_meses;
     resultado.timeline_semanas = config.minimo_meses * 4;
+    resultado.timeline_display = "Mín. " + config.minimo_meses + " meses";
     resultado.formato = "mensal";
   } else {
     // Modalidades A, B, C: preço por módulo
     resultado.preco_por_modulo = config.base_por_modulo;
     resultado.preco_total = config.base_por_modulo * modulos;
     resultado.timeline_semanas = Math.ceil(config.semanas_por_modulo * modulos);
+    resultado.timeline_display = formatarTimeline(resultado.timeline_semanas);
     resultado.formato = "projeto";
   }
 

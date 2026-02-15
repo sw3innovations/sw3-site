@@ -189,9 +189,10 @@ export default function SolweIA() {
 
         if (resultado.ok) {
           setPropostaEnviada(true);
+          var timelineTexto = resultado.data.pricing.timeline_display || (resultado.data.pricing.timeline_semanas + " semanas");
           setMessages(function(p) { return p.concat([{
             role: "assistant",
-            text: "Proposta enviada com sucesso! Verifique seu email (" + emailDetectado + "). O investimento estimado é de " + resultado.data.pricing.preco_total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) + " com timeline de " + resultado.data.pricing.timeline_semanas + " semanas. Em breve nossa equipe entrará em contato!"
+            text: "Proposta enviada com sucesso! Verifique seu email (" + emailDetectado + "). O investimento estimado é de " + resultado.data.pricing.preco_total.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) + " com timeline de " + timelineTexto + ". Em breve nossa equipe entrará em contato!"
           }]); });
         } else {
           setMessages(function(p) { return p.concat([{

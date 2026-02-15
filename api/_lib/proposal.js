@@ -94,7 +94,7 @@ export function gerarPropostaHTML(dados, pricing) {
 
     // Timeline
     '<div class="timeline-box">',
-    '<div class="timeline-value">⏱ Timeline Estimada: ' + formatarTimeline(pricing.timeline_semanas) + '</div>',
+    '<div class="timeline-value">⏱ Timeline Estimada: ' + (pricing.timeline_display || formatarTimeline(pricing.timeline_semanas)) + '</div>',
     '</div>',
 
     // Investimento
@@ -149,7 +149,7 @@ export function gerarResumoLead(dados, pricing) {
     '<p><strong>Email:</strong> ' + dados.cliente.email + '</p>',
     '<p><strong>Modalidade:</strong> ' + pricing.modalidade_nome + '</p>',
     '<p><strong>Investimento:</strong> ' + formatarPreco(pricing.preco_total) + '</p>',
-    '<p><strong>Timeline:</strong> ' + formatarTimeline(pricing.timeline_semanas) + '</p>',
+    '<p><strong>Timeline:</strong> ' + (pricing.timeline_display || formatarTimeline(pricing.timeline_semanas)) + '</p>',
     '</div>',
     '<h3 style="margin-top: 20px;">Projeto</h3>',
     '<p>' + dados.projeto.descricao + '</p>',
