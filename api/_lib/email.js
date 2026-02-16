@@ -1,9 +1,10 @@
 // ═══════════════════════════════════════════════════════
 // SOLW3 Email Service
-// Envia emails via Resend
+// Primary: Resend | Fallback: SMTP (Nodemailer)
 // ═══════════════════════════════════════════════════════
 
 import { Resend } from "resend";
+import { enviarEmailViaSMTP } from "./email-fallback.js";
 
 var resend = null;
 
@@ -42,25 +43,34 @@ export async function enviarPropostaCliente(emailCliente, nomeCliente, projetoDe
 
     if (error) {
       console.error("[EMAIL] Erro do Resend:", error);
-      return {
-        success: false,
-        error: error.message || JSON.stringify(error)
-      };
+      console.log("[EMAIL] Tentando fallback via SMTP...");
+
+      // FALLBACK: Tentar enviar via SMTP
+      return await enviarEmailViaSMTP(emailCliente, assunto, htmlProposta);
     }
 
-    console.log("[EMAIL] Email enviado com sucesso. ID:", data.id);
+    console.log("[EMAIL] Email enviado com sucesso via Resend. ID:", data.id);
 
     return {
       success: true,
       messageId: data.id,
+      provider: "resend",
       destinatario: emailCliente
     };
   } catch (erro) {
-    console.error("[EMAIL] Exceção ao enviar proposta:", erro);
-    return {
-      success: false,
-      error: erro.message
-    };
+    console.error("[EMAIL] Exceção ao enviar proposta via Resend:", erro);
+    console.log("[EMAIL] Tentando fallback via SMTP...");
+
+    // FALLBACK: Tentar enviar via SMTP
+    try {
+      return await enviarEmailViaSMTP(emailCliente, assunto, htmlProposta);
+    } catch (erroFallback) {
+      console.error("[EMAIL] Fallback SMTP também falhou:", erroFallback);
+      return {
+        success: false,
+        error: "Resend e SMTP falharam: " + erro.message + " | " + erroFallback.message
+      };
+    }
   }
 }
 
@@ -87,24 +97,33 @@ export async function notificarEquipe(dadosLead, htmlResumo) {
 
     if (error) {
       console.error("[EMAIL] Erro do Resend:", error);
-      return {
-        success: false,
-        error: error.message || JSON.stringify(error)
-      };
+      console.log("[EMAIL] Tentando fallback via SMTP...");
+
+      // FALLBACK: Tentar enviar via SMTP
+      return await enviarEmailViaSMTP(emailEquipe, assunto, htmlResumo, dadosLead.cliente.email);
     }
 
-    console.log("[EMAIL] Notificação enviada com sucesso. ID:", data.id);
+    console.log("[EMAIL] Notificação enviada com sucesso via Resend. ID:", data.id);
 
     return {
       success: true,
       messageId: data.id,
+      provider: "resend",
       destinatario: emailEquipe
     };
   } catch (erro) {
-    console.error("[EMAIL] Exceção ao notificar equipe:", erro);
-    return {
-      success: false,
-      error: erro.message
-    };
+    console.error("[EMAIL] Exceção ao notificar equipe via Resend:", erro);
+    console.log("[EMAIL] Tentando fallback via SMTP...");
+
+    // FALLBACK: Tentar enviar via SMTP
+    try {
+      return await enviarEmailViaSMTP(emailEquipe, assunto, htmlResumo, dadosLead.cliente.email);
+    } catch (erroFallback) {
+      console.error("[EMAIL] Fallback SMTP também falhou:", erroFallback);
+      return {
+        success: false,
+        error: "Resend e SMTP falharam: " + erro.message + " | " + erroFallback.message
+      };
+    }
   }
 }
