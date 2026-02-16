@@ -20,15 +20,24 @@ function getResendClient() {
 }
 
 export async function enviarPropostaCliente(emailCliente, nomeCliente, projetoDescricao, htmlProposta) {
-  var client = getResendClient();
-
   var assunto = "Sua proposta SOLW3 — " + projetoDescricao.substring(0, 50);
   if (projetoDescricao.length > 50) {
     assunto = assunto + "...";
   }
 
   console.log("[EMAIL] Enviando proposta para:", emailCliente);
+
+  // TEMPORÁRIO: Usar SMTP direto (Resend com domínio não verificado)
+  var usarSMTP = process.env.FORCE_SMTP === "true" || !process.env.RESEND_API_KEY;
+
+  if (usarSMTP) {
+    console.log("[EMAIL] FORCE_SMTP ativo - usando SMTP diretamente");
+    return await enviarEmailViaSMTP(emailCliente, assunto, htmlProposta);
+  }
+
   console.log("[EMAIL] RESEND_API_KEY existe:", !!process.env.RESEND_API_KEY);
+
+  var client = getResendClient();
 
   try {
     var { data, error } = await client.emails.send({
@@ -75,13 +84,22 @@ export async function enviarPropostaCliente(emailCliente, nomeCliente, projetoDe
 }
 
 export async function notificarEquipe(dadosLead, htmlResumo) {
-  var client = getResendClient();
-
   var emailEquipe = process.env.NOTIFICATION_EMAIL || "admin@sw3.tec.br";
   var assunto = "🔔 Novo lead SOLW3 — " + dadosLead.projeto.modalidade;
 
   console.log("[EMAIL] Notificando equipe:", emailEquipe);
+
+  // TEMPORÁRIO: Usar SMTP direto (Resend com domínio não verificado)
+  var usarSMTP = process.env.FORCE_SMTP === "true" || !process.env.RESEND_API_KEY;
+
+  if (usarSMTP) {
+    console.log("[EMAIL] FORCE_SMTP ativo - usando SMTP diretamente");
+    return await enviarEmailViaSMTP(emailEquipe, assunto, htmlResumo, dadosLead.cliente.email);
+  }
+
   console.log("[EMAIL] RESEND_API_KEY existe:", !!process.env.RESEND_API_KEY);
+
+  var client = getResendClient();
 
   try {
     var { data, error } = await client.emails.send({
