@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
 var MODALITIES = [
-  { icon: "✦", title: "Projeto Novo", desc: "Criar sistema do zero a partir de uma ideia. IA conduz requisitos, precifica e propõe.", ticket: "Sob consulta", time: "2–20 semanas", color: "#7dd3fc" },
-  { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico técnico automático com score de saúde 0–100.", ticket: "Sob consulta", time: "4–16 semanas", color: "#a78bfa" },
-  { icon: "⊕", title: "Extensão / Plugin", desc: "Adicionar features ou integrações a sistema existente com escopo cirúrgico.", ticket: "Sob consulta", time: "1–8 semanas", color: "#34d399" },
-  { icon: "⊞", title: "Braço de Dev", desc: "Squad sob demanda dentro do seu repo e processos. Devs com agentes IA = 2-3x output.", ticket: "Sob consulta", time: "Mín. 3 meses", color: "#fbbf24" },
+  { icon: "✦", title: "Projeto Novo", desc: "Sistema do zero. IA mapeia requisitos e precifica.", ticket: "Sob consulta", time: "2–20 semanas", color: "#7dd3fc" },
+  { icon: "⟳", title: "Refatoração", desc: "Modernizar sistema existente. Diagnóstico automático.", ticket: "Sob consulta", time: "4–16 semanas", color: "#a78bfa" },
+  { icon: "⊕", title: "Extensão", desc: "Adicionar features ou integrações.", ticket: "Sob consulta", time: "1–8 semanas", color: "#34d399" },
+  { icon: "⊞", title: "Squad IA", desc: "Time sob demanda no seu repo. 2-3x output.", ticket: "Sob consulta", time: "Mín. 3 meses", color: "#fbbf24" },
 ];
 
 export default function Solutions() {
@@ -15,8 +15,8 @@ export default function Solutions() {
       <div style={{ margin: "0 auto" }}>
         <div style={{ marginBottom: 44 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>O QUE FAZEMOS</div>
-          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>4 formas de transformar seu negócio</h2>
-          <p style={{ color: "var(--text2)", fontSize: 14.5, maxWidth: 580, lineHeight: 1.6 }}>Cada modalidade abre o chat na SOLW3 IA, que conduz o processo do diagnóstico à entrega.</p>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>4 formas de trabalhar</h2>
+          <p style={{ color: "var(--text2)", fontSize: 14.5, maxWidth: 580, lineHeight: 1.6 }}>Chat com IA conduz do diagnóstico à entrega.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {MODALITIES.map(function(mod, i) {

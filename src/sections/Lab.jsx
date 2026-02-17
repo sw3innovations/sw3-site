@@ -1,7 +1,7 @@
 var PROJECTS = [
-  { name: "AVM Brasil", desc: "Avaliação de imóveis com IA geoespacial. Laudos automatizados compatíveis com editais Caixa.", status: "Em desenvolvimento", color: "#7dd3fc" },
-  { name: "Chat GIS", desc: "Interface conversacional para dados geoespaciais. Pergunte ao mapa em linguagem natural.", status: "Pesquisa", color: "#a78bfa" },
-  { name: "OTW Health", desc: "Plataforma de saúde digital com IA para triagem, acompanhamento e integração hospitalar.", status: "Em desenvolvimento", color: "#34d399" },
+  { name: "AVM Brasil", desc: "Avaliação de imóveis com IA geoespacial. Laudos automatizados.", status: "Em dev", color: "#7dd3fc" },
+  { name: "Chat GIS", desc: "Conversa com mapas em linguagem natural.", status: "Pesquisa", color: "#a78bfa" },
+  { name: "OTW Health", desc: "Saúde digital com IA para triagem e acompanhamento.", status: "Em dev", color: "#34d399" },
 ];
 
 export default function Lab() {
@@ -10,8 +10,8 @@ export default function Lab() {
       <div style={{ margin: "0 auto" }}>
         <div style={{ marginBottom: 44 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--accent)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>SOLW3 LAB</div>
-          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>Pesquisa e produtos de IA avançada</h2>
-          <p style={{ color: "var(--text-light2)", fontSize: 14.5, maxWidth: 520, lineHeight: 1.6 }}>Soluções de IA avançada que podem ser integradas como feature no seu projeto.</p>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>Produtos de IA avançada</h2>
+          <p style={{ color: "var(--text-light2)", fontSize: 14.5, maxWidth: 520, lineHeight: 1.6 }}>Soluções que podem ser integradas no seu projeto.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
           {PROJECTS.map(function(p, i) {

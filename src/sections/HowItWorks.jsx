@@ -1,8 +1,8 @@
 var STEPS = [
-  { num: "01", title: "Conversa com IA", desc: "Descreva o que precisa. A SOLW3 IA identifica a modalidade, faz perguntas inteligentes e mapeia requisitos em 15-30 minutos.", time: "15–30 min" },
-  { num: "02", title: "Proposta Completa", desc: "Escopo, stack técnica, timeline e preço — tudo gerado automaticamente. Você vê o preço ajustar em tempo real conforme seleciona features.", time: "Instantâneo" },
-  { num: "03", title: "Execução por Agentes", desc: "Agentes de IA (ARCH, BACK, FRONT, QA, DEPLOY) constroem o sistema. Você acompanha e valida cada entrega em staging.", time: "Semanas" },
-  { num: "04", title: "Entrega + Suporte", desc: "Sistema em produção, documentação gerada por IA, código no GitHub. Planos de manutenção e evolução contínua.", time: "Contínuo" },
+  { num: "01", title: "Conversa", desc: "Descreva o que precisa. IA mapeia requisitos.", time: "15–30 min" },
+  { num: "02", title: "Proposta", desc: "Escopo, stack, timeline e preço automáticos.", time: "Instantâneo" },
+  { num: "03", title: "Execução", desc: "Agentes IA constroem. Você valida em staging.", time: "Semanas" },
+  { num: "04", title: "Entrega", desc: "Sistema em produção, docs e código no GitHub.", time: "Contínuo" },
 ];
 
 export default function HowItWorks() {
@@ -11,8 +11,8 @@ export default function HowItWorks() {
       <div style={{ margin: "0 auto" }}>
         <div style={{ marginBottom: 56 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--accent)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>COMO FUNCIONA</div>
-          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>De conversa a sistema em horas, não meses</h2>
-          <p style={{ color: "var(--text-light2)", fontSize: 14.5, maxWidth: 560, lineHeight: 1.6 }}>O mercado tradicional leva 2-3 meses antes de ver qualquer coisa. Com SOLW3, você sai do chat com proposta completa.</p>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", marginBottom: 8 }}>De conversa a sistema</h2>
+          <p style={{ color: "var(--text-light2)", fontSize: 14.5, maxWidth: 560, lineHeight: 1.6 }}>Proposta completa em minutos, não meses.</p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {STEPS.map(function(s, i) {

@@ -10,8 +10,8 @@ export default function Hero() {
       <div style={{ margin: "0 auto", position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: 48, flexWrap: "wrap" }}>
         <div className="hero-text" style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: "var(--mono)", fontSize: 10.5, color: "var(--accent)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 20, opacity: 0.9 }}>TECNOLOGIA QUE RESOLVE</div>
-          <h1 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.04em", marginBottom: 20 }}>Descreva sua ideia.<br /><span style={{ color: "var(--accent)" }}>A IA transforma em sistema.</span></h1>
-          <p style={{ fontSize: 16, color: "var(--text-light2)", lineHeight: 1.7, marginBottom: 36, maxWidth: 560 }}>Crie do zero, melhore o que já existe, ou reforce seu time. Converse com a SOLW3 IA, receba uma proposta completa, e acompanhe agentes de IA construindo cada etapa.</p>
+          <h1 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.04em", marginBottom: 20 }}>Descreva sua ideia.<br /><span style={{ color: "var(--accent)" }}>A IA constrói o sistema.</span></h1>
+          <p style={{ fontSize: 16, color: "var(--text-light2)", lineHeight: 1.7, marginBottom: 36, maxWidth: 560 }}>Converse com a IA, receba proposta em tempo real, acompanhe agentes construindo.</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Link to="/ia" style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "var(--display)", textDecoration: "none", display: "inline-block" }}>Começar conversa</Link>
             <a href="https://wa.me/5583981751871?text=Oi%2C%20vim%20do%20site%20SOLW3" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>WhatsApp</a>
