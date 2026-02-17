@@ -5,6 +5,7 @@ import { Logo } from "./Logo";
 var NAV_LINKS = [
   { l: "Soluções", h: "#solucoes" },
   { l: "Como Funciona", h: "#como-funciona" },
+  { l: "Cases", h: "#cases" },
   { l: "Pós-Entrega", h: "#planos" },
   { l: "Lab", h: "#lab" },
   { l: "Contato", h: "#contato" },
