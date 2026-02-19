@@ -6,6 +6,8 @@
 import { calcularPrecificacao } from "./_lib/pricing.js";
 import { gerarPropostaHTML, gerarResumoLead } from "./_lib/proposal.js";
 import { enviarPropostaCliente, notificarEquipe } from "./_lib/email.js";
+import { checkRateLimit } from "./_lib/rate-limit.js";
+import { trackMetric } from "./_lib/metrics.js";
 
 // CORS configuration
 var ALLOWED_ORIGINS = [
@@ -84,6 +86,16 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  // Rate limiting: 3 leads por IP por hora
+  var rateCheck = checkRateLimit(req, "lead", 3, 3600);
+  if (!rateCheck.allowed) {
+    trackMetric("rate_limited", { ip: rateCheck.ip, endpoint: "lead" });
+    return res.status(429).json({
+      error: "Limite de requisicoes excedido. Tente novamente em breve.",
+      retry_after: rateCheck.retryAfter
+    });
+  }
+
   try {
     var dados = req.body;
 
@@ -141,6 +153,12 @@ export default async function handler(req, res) {
     var log = logarLead(dados, pricing, {
       emailCliente: resultadoCliente,
       emailEquipe: resultadoEquipe
+    });
+
+    // Tracking de metricas
+    trackMetric("lead_created", {
+      modalidade: dados.projeto.modalidade,
+      emails: [resultadoCliente, resultadoEquipe]
     });
 
     // 10. Retornar resposta

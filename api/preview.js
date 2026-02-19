@@ -8,6 +8,8 @@ export var config = { maxDuration: 120 };
 
 import { gerarPrototipoHTML } from "./_lib/preview-gen.js";
 import { salvarPrototipo, construirPreviewURL, buscarURLBlob, salvarDadosLead, buscarDadosLead } from "./_lib/store.js";
+import { checkRateLimit } from "./_lib/rate-limit.js";
+import { trackMetric } from "./_lib/metrics.js";
 
 var ALLOWED_ORIGINS = [
   "https://sw3.tec.br",
@@ -32,7 +34,17 @@ async function handleGET(req, res) {
   var id = req.query.id;
 
   if (!id) {
-    return res.status(400).json({ error: "ID do preview é obrigatório" });
+    return res.status(400).json({ error: "ID do preview e obrigatorio" });
+  }
+
+  // Rate limiting: 20 acessos GET por IP por hora
+  var rateCheck = checkRateLimit(req, "preview_get", 20, 3600);
+  if (!rateCheck.allowed) {
+    trackMetric("rate_limited", { ip: rateCheck.ip, endpoint: "preview_get" });
+    return res.status(429).json({
+      error: "Limite de requisicoes excedido. Tente novamente em breve.",
+      retry_after: rateCheck.retryAfter
+    });
   }
 
   try {
@@ -49,26 +61,28 @@ async function handleGET(req, res) {
         var html = await response.text();
         res.setHeader("Content-Type", "text/html; charset=utf-8");
         res.setHeader("Cache-Control", "public, max-age=3600");
+        // Metrica: servido do cache
+        trackMetric("preview_cached", null);
         return res.status(200).send(html);
       }
     }
 
     // 2. HTML não existe → buscar dados do lead e gerar on-demand
-    console.log("[PREVIEW-GET] HTML não encontrado, buscando dados do lead...");
+    console.log("[PREVIEW-GET] HTML nao encontrado, buscando dados do lead...");
 
     var dadosLead = await buscarDadosLead(id);
 
     if (!dadosLead) {
-      throw new Error("Dados do lead não encontrados");
+      throw new Error("Dados do lead nao encontrados");
     }
 
-    console.log("[PREVIEW-GET] Gerando protótipo on-demand...");
+    console.log("[PREVIEW-GET] Gerando prototipo on-demand...");
 
     // 3. Gerar HTML com Claude API
     var resultado = await gerarPrototipoHTML(dadosLead);
 
     if (!resultado.success) {
-      throw new Error("Falha ao gerar protótipo: " + resultado.error);
+      throw new Error("Falha ao gerar prototipo: " + resultado.error);
     }
 
     // 4. Salvar HTML gerado no Blob
@@ -82,7 +96,10 @@ async function handleGET(req, res) {
 
     await salvarPrototipo(id, resultado.html, metadata);
 
-    console.log("[PREVIEW-GET] Protótipo gerado e salvo. Servindo HTML.");
+    console.log("[PREVIEW-GET] Prototipo gerado e salvo. Servindo HTML.");
+
+    // Metrica: gerado on-demand
+    trackMetric("preview_generated", { tokens_used: resultado.tokens_used || 0 });
 
     // 5. Servir HTML gerado
     res.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -134,12 +151,22 @@ async function handleGET(req, res) {
 // ═══════════════════════════════════════════════════════
 
 async function handlePOST(req, res) {
+  // Rate limiting: 3 posts por IP por dia
+  var rateCheck = checkRateLimit(req, "preview_post", 3, 86400);
+  if (!rateCheck.allowed) {
+    trackMetric("rate_limited", { ip: rateCheck.ip, endpoint: "preview_post" });
+    return res.status(429).json({
+      error: "Limite de requisicoes excedido. Tente novamente em breve.",
+      retry_after: rateCheck.retryAfter
+    });
+  }
+
   try {
     var dados = req.body;
 
     if (!dados.id || !dados.projeto || !dados.cliente) {
       return res.status(400).json({
-        error: "Dados inválidos",
+        error: "Dados invalidos",
         required: ["id", "projeto", "cliente"]
       });
     }
