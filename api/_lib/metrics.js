@@ -70,7 +70,8 @@ async function saveMetrics(date, data) {
   await put(path, JSON.stringify(data), {
     access: "public",
     contentType: "application/json",
-    addRandomSuffix: false
+    addRandomSuffix: false,
+    allowOverwrite: true
   });
 }
 
