@@ -38,13 +38,20 @@ export default function ChatWidget({ show, onClose, onOpen }) {
 
   return (
     <div style={{ position: "fixed", bottom: 20, right: 20, width: 370, height: 520, background: "#0B1628", borderRadius: 16, zIndex: 9999, display: "flex", flexDirection: "column", boxShadow: "0 24px 80px rgba(0,0,0,0.35)", overflow: "hidden", border: "1px solid rgba(34,211,238,0.2)" }}>
-      {/* Close */}
-      <button
-        onClick={onClose}
-        style={{ position: "absolute", top: 10, right: 10, background: "rgba(255,255,255,0.08)", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 13, cursor: "pointer", padding: "3px 7px", borderRadius: 5, zIndex: 1 }}
-      >
-        ✕
-      </button>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", background: "rgba(0,0,0,0.25)", borderBottom: "1px solid rgba(34,211,238,0.12)", flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22D3EE", display: "inline-block" }} />
+          <span style={{ fontSize: 12, fontWeight: 700, color: "#fff", fontFamily: "var(--mono, monospace)", letterSpacing: "0.04em" }}>SOLW3 IA</span>
+          <span style={{ fontSize: 10, color: "#22D3EE", fontFamily: "var(--mono, monospace)" }}>· Online</span>
+        </div>
+        <button
+          onClick={onClose}
+          style={{ background: "rgba(255,255,255,0.08)", border: "none", color: "rgba(255,255,255,0.5)", fontSize: 13, cursor: "pointer", padding: "3px 7px", borderRadius: 5 }}
+        >
+          ✕
+        </button>
+      </div>
 
       {/* Upgrade banner */}
       {upgraded && (

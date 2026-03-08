@@ -1,7 +1,7 @@
 var PROJECTS = [
-  { name: "AVM Brasil", desc: "Avaliação de imóveis com IA geoespacial. Laudos automatizados.", status: "Em dev", color: "#7dd3fc" },
-  { name: "Chat GIS", desc: "Conversa com mapas em linguagem natural.", status: "Pesquisa", color: "#a78bfa" },
-  { name: "OTW Health", desc: "Saúde digital com IA para triagem e acompanhamento.", status: "Em dev", color: "#34d399" },
+  { name: "AVM Brasil", desc: "Avaliação de imóveis com IA geoespacial. Laudos automatizados.", status: "Em dev", color: "#7dd3fc", viaSolw3: true },
+  { name: "Chat GIS", desc: "Conversa com mapas em linguagem natural.", status: "Pesquisa", color: "#a78bfa", viaSolw3: true },
+  { name: "OTW Health", desc: "Saúde digital com IA para triagem e acompanhamento.", status: "Em dev", color: "#34d399", viaSolw3: true },
 ];
 
 export default function Lab() {
@@ -24,7 +24,12 @@ export default function Lab() {
                   <h3 style={{ fontSize: 17, fontWeight: 700, color: p.color }}>{p.name}</h3>
                   <span style={{ fontFamily: "var(--mono)", fontSize: 9, padding: "3px 8px", borderRadius: 4, background: p.color + "15", border: "1px solid " + p.color + "25", color: p.color, fontWeight: 600, textTransform: "uppercase" }}>{p.status}</span>
                 </div>
-                <p style={{ fontSize: 12.5, color: "var(--text-light2)", lineHeight: 1.65 }}>{p.desc}</p>
+                <p style={{ fontSize: 12.5, color: "var(--text-light2)", lineHeight: 1.65, marginBottom: 14 }}>{p.desc}</p>
+                {p.viaSolw3 && (
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontFamily: "var(--mono)", fontSize: 9, padding: "3px 8px", borderRadius: 4, background: "rgba(0,212,255,0.08)", border: "1px solid rgba(0,212,255,0.22)", color: "#00D4FF", fontWeight: 600 }}>
+                    ◈ Pipeline SOLW3
+                  </span>
+                )}
               </div>
             );
           })}
