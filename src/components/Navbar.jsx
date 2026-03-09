@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 
 var NAV_LINKS = [
@@ -10,6 +9,10 @@ var NAV_LINKS = [
   { l: "Lab", h: "#lab" },
   { l: "Contato", h: "#contato" },
 ];
+
+function openWidget() {
+  window.dispatchEvent(new CustomEvent("sw3:openWidget"));
+}
 
 export default function Navbar({ scrollY }) {
   var _m = useState(false);
@@ -37,7 +40,10 @@ export default function Navbar({ scrollY }) {
                 >{n.l}</a>
               );
             })}
-            <Link to="/ia" style={{ background: navSolid ? "var(--bg-dark)" : "rgba(255,255,255,0.12)", color: "#fff", padding: "7px 16px", borderRadius: 7, fontWeight: 600, fontSize: 11, border: navSolid ? "none" : "1px solid rgba(255,255,255,0.15)", cursor: "pointer", fontFamily: "var(--display)", transition: "all 0.3s", textDecoration: "none", display: "inline-block" }}>Falar com IA</Link>
+            <button
+              onClick={openWidget}
+              style={{ background: navSolid ? "var(--bg-dark)" : "rgba(255,255,255,0.12)", color: "#fff", padding: "7px 16px", borderRadius: 7, fontWeight: 600, fontSize: 11, border: navSolid ? "none" : "1px solid rgba(255,255,255,0.15)", cursor: "pointer", fontFamily: "var(--display)", transition: "all 0.3s" }}
+            >Falar com IA</button>
           </div>
           <button className="nav-hamburger" onClick={function() { setShowMenu(!showMenu); }} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, zIndex: 1002 }}>
             <div style={{ width: 20, height: 2, background: navSolid ? "var(--text)" : "#fff", marginBottom: 5, transition: "all 0.3s", transform: showMenu ? "rotate(45deg) translate(2.5px, 2.5px)" : "none" }} />
@@ -52,7 +58,10 @@ export default function Navbar({ scrollY }) {
           {NAV_LINKS.map(function(n) {
             return <a key={n.l} href={n.h} onClick={function() { setShowMenu(false); }} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 20, fontWeight: 600, transition: "color 0.2s" }}>{n.l}</a>;
           })}
-          <Link to="/ia" onClick={function() { setShowMenu(false); }} style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer", fontFamily: "var(--display)", marginTop: 12, textDecoration: "none", display: "inline-block" }}>Falar com IA</Link>
+          <button
+            onClick={function() { setShowMenu(false); openWidget(); }}
+            style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 14, border: "none", cursor: "pointer", fontFamily: "var(--display)", marginTop: 12 }}
+          >Falar com IA</button>
         </div>
       )}
     </>

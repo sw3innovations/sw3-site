@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { cssVars } from "./theme";
 import GlobalStyles from "./components/GlobalStyles";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ChatWidget from "./components/ChatWidget";
 import Home from "./pages/Home";
-import SolweIA from "./pages/SolweIA";
 
 function HomeLayout() {
-  var _chat = useState(false);
-  var showChat = _chat[0];
-  var setShowChat = _chat[1];
-
   var _scroll = useState(0);
   var scrollY = _scroll[0];
   var setScrollY = _scroll[1];
@@ -23,15 +18,12 @@ function HomeLayout() {
     return function() { window.removeEventListener("scroll", fn); };
   }, []);
 
-  var openChat = function() { setShowChat(true); };
-  var closeChat = function() { setShowChat(false); };
-
   return (
     <>
       <Navbar scrollY={scrollY} />
       <Home />
       <Footer />
-      <ChatWidget show={showChat} onClose={closeChat} onOpen={openChat} />
+      <ChatWidget />
     </>
   );
 }
@@ -47,7 +39,8 @@ export default function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<HomeLayout />} />
-        <Route path="/ia" element={<SolweIA />} />
+        {/* /ia era a IA local legada — agora o widget SOLW3 é o único ponto de entrada */}
+        <Route path="/ia" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );

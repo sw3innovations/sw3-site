@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+function openWidget() { window.dispatchEvent(new CustomEvent("sw3:openWidget")); }
 
 var MODALITIES = [
   { icon: "✦", title: "Projeto Novo", desc: "Sistema do zero. IA mapeia requisitos e precifica.", ticket: "Sob consulta", time: "2–20 semanas", color: "#7dd3fc" },
@@ -8,7 +8,6 @@ var MODALITIES = [
 ];
 
 export default function Solutions() {
-  var navigate = useNavigate();
 
   return (
     <section id="solucoes" style={{ padding: "80px 40px 100px", background: "var(--bg)" }}>
@@ -21,7 +20,7 @@ export default function Solutions() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
           {MODALITIES.map(function(mod, i) {
             return (
-              <div key={i} onClick={function() { navigate("/ia"); }} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
+              <div key={i} onClick={openWidget} style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 12, padding: "28px 22px", cursor: "pointer", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)", position: "relative", overflow: "hidden" }}
                 onMouseEnter={function(e) { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.08)"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.borderColor = mod.color + "40"; }}
                 onMouseLeave={function(e) { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; e.currentTarget.style.borderColor = "var(--border)"; }}
               >
