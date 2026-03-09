@@ -1,9 +1,5 @@
 import TerminalAnimation from "./TerminalAnimation";
 
-function openWidget() {
-  window.dispatchEvent(new CustomEvent("sw3:openWidget"));
-}
-
 export default function Hero() {
   return (
     <section style={{ background: "var(--bg-dark)", color: "#fff", position: "relative", overflow: "hidden", padding: "140px 40px 100px", minHeight: 560 }}>
@@ -16,8 +12,7 @@ export default function Hero() {
           <h1 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.08, letterSpacing: "-0.04em", marginBottom: 20 }}>Descreva sua ideia.<br /><span style={{ color: "var(--accent)" }}>A IA constrói o sistema.</span></h1>
           <p style={{ fontSize: 16, color: "var(--text-light2)", lineHeight: 1.7, marginBottom: 36, maxWidth: 560 }}>Converse com a IA, receba proposta em tempo real, acompanhe agentes construindo.</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button onClick={openWidget} style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "var(--display)" }}>Começar conversa</button>
-            <a href="https://wa.me/5583981751871?text=Oi%2C%20vim%20do%20site%20SOLW3" target="_blank" rel="noopener noreferrer" style={{ background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.8)", padding: "12px 28px", borderRadius: 8, fontWeight: 500, fontSize: 13.5, textDecoration: "none", border: "1px solid rgba(255,255,255,0.12)" }}>WhatsApp</a>
+            <a href="https://wa.me/5583981751871?text=Oi%2C%20vim%20do%20site%20SOLW3" target="_blank" rel="noopener noreferrer" style={{ background: "#fff", color: "var(--bg-dark)", padding: "12px 28px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, textDecoration: "none", border: "none", display: "inline-block" }}>WhatsApp</a>
           </div>
           <div className="pipeline-badges" style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 40 }}>
             {["Conversa", "Proposta", "Execução", "Entrega", "Suporte"].map(function(s, i) {
