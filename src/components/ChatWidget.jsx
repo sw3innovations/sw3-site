@@ -20,21 +20,27 @@ export default function ChatWidget() {
       if (e.data && e.data.type === "solw3:upgrade") {
         // Futuro: mostrar banner de upgrade
       }
+      if (e.type === "sw3:openWidget" || (e.data && e.data.type === "sw3:openWidget")) {
+        setOpen(true);
+      }
     };
     window.addEventListener("message", handler);
-    return function() { window.removeEventListener("message", handler); };
+    window.addEventListener("sw3:openWidget", handler);
+    return function() {
+      window.removeEventListener("message", handler);
+      window.removeEventListener("sw3:openWidget", handler);
+    };
   }, []);
 
   return (
     <>
-      {/* Botão flutuante centralizado */}
+      {/* Botão flutuante bottom-right */}
       <button
         onClick={function() { setOpen(function(v) { return !v; }); }}
         style={{
           position: "fixed",
           bottom: 24,
-          left: "50%",
-          transform: "translateX(-50%)",
+          right: 24,
           zIndex: 9998,
           display: "flex",
           alignItems: "center",
@@ -52,8 +58,8 @@ export default function ChatWidget() {
           whiteSpace: "nowrap",
           fontFamily: "inherit",
         }}
-        onMouseEnter={function(e) { e.currentTarget.style.transform = "translateX(-50%) scale(1.05)"; }}
-        onMouseLeave={function(e) { e.currentTarget.style.transform = "translateX(-50%) scale(1)"; }}
+        onMouseEnter={function(e) { e.currentTarget.style.transform = "scale(1.05)"; }}
+        onMouseLeave={function(e) { e.currentTarget.style.transform = "scale(1)"; }}
       >
         {open
           ? <><span style={{ fontSize: 13 }}>✕</span> Fechar</>

@@ -1,14 +1,5 @@
 import { useState } from "react";
 
-var solw3Portfolio = [
-  { name: "AutoVendas", setor: "Indústria", sectorColor: "#7dd3fc", desc: "Automação de vendas B2B para distribuidores industriais.", status: "Em produção" },
-  { name: "AVM Brasil", setor: "Fintech · Imobiliário", sectorColor: "#a78bfa", desc: "Avaliação de imóveis com IA geoespacial e laudos automatizados.", status: "Em desenvolvimento" },
-  { name: "ContentHub", setor: "Marketing", sectorColor: "#34d399", desc: "Geração e publicação de conteúdo didático com IA.", status: "Entregue" },
-  { name: "SmartCommerce", setor: "Varejo", sectorColor: "#f59e0b", desc: "E-commerce inteligente com pedidos via WhatsApp e entrega express.", status: "Entregue" },
-  { name: "OTW", setor: "Saúde", sectorColor: "#fb7185", desc: "Saúde digital com triagem por IA.", status: "Em desenvolvimento", nupex: true },
-  { name: "OTW Health", setor: "Saúde Ocupacional", sectorColor: "#fb923c", desc: "Monitoramento e acompanhamento de saúde ocupacional com IA.", status: "Em desenvolvimento", nupex: true },
-];
-
 var cases = [
   {
     id: "vidros",
@@ -169,49 +160,8 @@ export default function Cases() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: 36, padding: "24px 0", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-          <p style={{ fontSize: 12, color: "#94a3b8", fontFamily: "var(--mono)" }}>Próximo case pode ser o seu.</p>
-        </div>
-
-        {/* Portfólio SOLW3 — produtos próprios via pipeline */}
-        <div style={{ marginTop: 72, paddingTop: 56, borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-          <div style={{ marginBottom: 32 }}>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "4px 10px", borderRadius: 20, background: "rgba(0,212,255,0.06)", border: "1px solid rgba(0,212,255,0.2)", marginBottom: 14 }}>
-              <span style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#00D4FF", fontWeight: 700, letterSpacing: "0.12em" }}>PRODUTO SW3 · VIA SOLW3</span>
-            </div>
-            <h3 style={{ fontSize: "clamp(20px, 2.5vw, 30px)", fontWeight: 800, letterSpacing: "-0.03em", color: "#1e293b", marginBottom: 8 }}>
-              Nossos próprios produtos, construídos via SOLW3
-            </h3>
-            <p style={{ color: "#64748b", fontSize: 14, maxWidth: 560, lineHeight: 1.65 }}>
-              AutoVendas, AVM Brasil e ContentHub passam pelo mesmo pipeline SDD com 7 gates de qualidade. Dogfooding real — usamos a plataforma para construir a plataforma.
-            </p>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 14 }}>
-            {solw3Portfolio.map(function(p) {
-              var statusColor = p.status === "Em produção" ? "#34d399" : p.status === "Entregue" ? "#60a5fa" : "#f59e0b";
-              return (
-                <div key={p.name} style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.07)", borderRadius: 12, padding: "20px 20px 18px", position: "relative", overflow: "hidden" }}>
-                  <div style={{ height: 2, background: "linear-gradient(90deg, " + p.sectorColor + ", " + p.sectorColor + "40)", position: "absolute", top: 0, left: 0, right: 0 }} />
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: "#1e293b", letterSpacing: "-0.02em" }}>{p.name}</h4>
-                    <span style={{ fontFamily: "var(--mono)", fontSize: 8, padding: "2px 7px", borderRadius: 4, background: statusColor + "15", border: "1px solid " + statusColor + "30", color: statusColor, fontWeight: 700, whiteSpace: "nowrap", marginLeft: 8 }}>{p.status}</span>
-                  </div>
-                  <span style={{ display: "inline-block", fontFamily: "var(--mono)", fontSize: 9, padding: "2px 7px", borderRadius: 4, background: p.sectorColor + "12", border: "1px solid " + p.sectorColor + "25", color: p.sectorColor, fontWeight: 600, marginBottom: 10 }}>{p.setor}</span>
-                  <p style={{ fontSize: 12.5, color: "#64748b", lineHeight: 1.6, marginBottom: 14 }}>{p.desc}</p>
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", gap: 3, fontFamily: "var(--mono)", fontSize: 8.5, padding: "2px 8px", borderRadius: 4, background: "rgba(0,212,255,0.07)", border: "1px solid rgba(0,212,255,0.2)", color: "#00D4FF", fontWeight: 600 }}>
-                      ◈ Via SOLW3
-                    </span>
-                    {p.nupex && (
-                      <span style={{ fontFamily: "var(--mono)", fontSize: 8.5, padding: "2px 8px", borderRadius: 4, background: "rgba(148,163,184,0.08)", border: "1px solid rgba(148,163,184,0.2)", color: "#94a3b8", fontWeight: 600 }}>
-                        Projeto NUPEX
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <p style={{ fontSize: 12, color: "#94a3b8", fontFamily: "var(--mono)", marginBottom: 16 }}>Próximo case pode ser o seu.</p>
+          <button onClick={function() { window.dispatchEvent(new Event("sw3:openWidget")); }} style={{ background: "#00D4FF", color: "#0D1B2A", padding: "11px 26px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Contar minha ideia →</button>
         </div>
 
       </div>
