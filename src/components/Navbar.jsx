@@ -36,6 +36,10 @@ export default function Navbar({ scrollY }) {
                 >{n.l}</a>
               );
             })}
+            <a href="https://solw3.tec.br/login" style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "#E2E8F0", padding: "7px 18px", borderRadius: "7px", fontSize: "13px", textDecoration: "none", marginLeft: "12px", transition: "all 0.2s" }}
+              onMouseOver={function(e) { e.target.style.borderColor = "#00D4FF"; e.target.style.color = "#00D4FF"; }}
+              onMouseOut={function(e) { e.target.style.borderColor = "rgba(255,255,255,0.2)"; e.target.style.color = "#E2E8F0"; }}
+            >Acessar →</a>
           </div>
           <button className="nav-hamburger" onClick={function() { setShowMenu(!showMenu); }} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, zIndex: 1002 }}>
             <div style={{ width: 20, height: 2, background: "#fff", marginBottom: 5, transition: "all 0.3s", transform: showMenu ? "rotate(45deg) translate(2.5px, 2.5px)" : "none" }} />
@@ -50,6 +54,7 @@ export default function Navbar({ scrollY }) {
           {NAV_LINKS.map(function(n) {
             return <a key={n.l} href={n.h} onClick={function() { setShowMenu(false); }} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 20, fontWeight: 600, transition: "color 0.2s" }}>{n.l}</a>;
           })}
+          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "#E2E8F0", padding: "10px 28px", borderRadius: "8px", fontSize: "16px", textDecoration: "none", marginTop: 8, transition: "all 0.2s" }}>Acessar →</a>
         </div>
       )}
     </>

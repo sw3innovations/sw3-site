@@ -34,7 +34,7 @@ export default function ConhecaSolw3() {
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 20, background: "rgba(0,212,255,0.07)", border: "1px solid rgba(0,212,255,0.22)", marginBottom: 20 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00D4FF", display: "inline-block" }} />
-              <span style={{ fontSize: 10, fontFamily: "var(--mono)", color: "#00D4FF", fontWeight: 700, letterSpacing: "0.12em" }}>PLATAFORMA EM PRODUÇÃO · 13 AGENTES IA · PIPELINE SDD</span>
+              <span style={{ fontSize: 10, fontFamily: "var(--mono)", color: "#00D4FF", fontWeight: 700, letterSpacing: "0.12em" }}>PLATAFORMA EM PRODUÇÃO · 14 AGENTES IA · PIPELINE SDD</span>
             </div>
 
             <h3 style={{ fontSize: "clamp(22px, 3vw, 34px)", fontWeight: 800, color: "#fff", lineHeight: 1.18, marginBottom: 18 }}>

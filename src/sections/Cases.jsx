@@ -72,17 +72,17 @@ export default function Cases() {
   var setExpanded = _expanded[1];
 
   return (
-    <section id="cases" style={{ padding: "80px 32px 100px", background: "#fafafa" }}>
+    <section id="cases" style={{ padding: "80px 32px 100px", background: "#0F2132" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
 
         <div style={{ marginBottom: 44 }}>
-          <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "#475569", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>
+          <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "#94A3B8", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 10 }}>
             CASES
           </div>
-          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", color: "#1e293b", marginBottom: 8 }}>
+          <h2 style={{ fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 800, letterSpacing: "-0.03em", color: "#FFFFFF", marginBottom: 8 }}>
             Projetos que já entregamos
           </h2>
-          <p style={{ color: "#64748b", fontSize: 14.5, maxWidth: 520, lineHeight: 1.6 }}>
+          <p style={{ color: "#E2E8F0", fontSize: 14.5, maxWidth: 520, lineHeight: 1.6 }}>
             Cada projeto valida uma parte do modelo — e vira base para o próximo produto.
           </p>
         </div>
@@ -91,64 +91,64 @@ export default function Cases() {
           {cases.map(function(c) {
             var isOpen = expanded === c.id;
             return (
-              <div key={c.id} style={{ background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderRadius: 14, overflow: "hidden", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}
-                onMouseEnter={function(e) { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.07)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={function(e) { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.04)"; e.currentTarget.style.transform = "none"; }}
+              <div key={c.id} style={{ background: "#1B2838", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, overflow: "hidden", transition: "all 0.3s", boxShadow: "0 1px 3px rgba(0,0,0,0.2)" }}
+                onMouseEnter={function(e) { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.3)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={function(e) { e.currentTarget.style.boxShadow = "0 1px 3px rgba(0,0,0,0.2)"; e.currentTarget.style.transform = "none"; }}
               >
                 <div style={{ height: 3, background: "linear-gradient(90deg, " + c.color + ", " + c.color + "60)" }} />
                 <div style={{ padding: "28px 28px 24px" }}>
 
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <div style={{ width: 40, height: 40, borderRadius: 10, background: c.color + "10", border: "1px solid " + c.color + "20", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: c.color }}>{c.icon}</div>
+                      <div style={{ width: 40, height: 40, borderRadius: 10, background: c.color + "18", border: "1px solid " + c.color + "30", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: c.color }}>{c.icon}</div>
                       <div>
-                        <h3 style={{ fontSize: 18, fontWeight: 800, color: "#1e293b", letterSpacing: "-0.02em" }}>{c.label}</h3>
-                        <span style={{ fontSize: 10, color: "#94a3b8", fontFamily: "var(--mono)" }}>Modalidade {c.modalidade}: {c.modalidadeLabel}</span>
+                        <h3 style={{ fontSize: 18, fontWeight: 800, color: "#FFFFFF", letterSpacing: "-0.02em" }}>{c.label}</h3>
+                        <span style={{ fontSize: 10, color: "#94A3B8", fontFamily: "var(--mono)" }}>Modalidade {c.modalidade}: {c.modalidadeLabel}</span>
                       </div>
                     </div>
                   </div>
 
-                  <p style={{ fontSize: 13.5, color: "#475569", fontWeight: 500, lineHeight: 1.5, marginBottom: 20, fontStyle: "italic" }}>{c.tagline}</p>
+                  <p style={{ fontSize: 13.5, color: "#94A3B8", fontWeight: 500, lineHeight: 1.5, marginBottom: 20, fontStyle: "italic" }}>{c.tagline}</p>
 
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10, marginBottom: 18 }}>
                     {c.results.map(function(r, i) {
                       return (
-                        <div key={i} style={{ background: "#f8fafc", borderRadius: 8, padding: "14px 10px", textAlign: "center" }}>
+                        <div key={i} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: "14px 10px", textAlign: "center" }}>
                           <div style={{ fontSize: 17, fontWeight: 800, color: c.color, letterSpacing: "-0.02em", marginBottom: 2 }}>{r.value}</div>
-                          <div style={{ fontSize: 9, color: "#94a3b8", fontFamily: "var(--mono)", fontWeight: 500 }}>{r.detail}</div>
+                          <div style={{ fontSize: 9, color: "#94A3B8", fontFamily: "var(--mono)", fontWeight: 500 }}>{r.detail}</div>
                         </div>
                       );
                     })}
                   </div>
 
-                  <button onClick={function() { setExpanded(isOpen ? null : c.id); }} style={{ background: "none", border: "none", color: "#94a3b8", fontSize: 11, cursor: "pointer", fontFamily: "var(--mono)", padding: "6px 0", width: "100%", textAlign: "left", transition: "color 0.2s" }}
+                  <button onClick={function() { setExpanded(isOpen ? null : c.id); }} style={{ background: "none", border: "none", color: "#94A3B8", fontSize: 11, cursor: "pointer", fontFamily: "var(--mono)", padding: "6px 0", width: "100%", textAlign: "left", transition: "color 0.2s" }}
                     onMouseEnter={function(e) { e.target.style.color = c.color; }}
-                    onMouseLeave={function(e) { e.target.style.color = "#94a3b8"; }}
+                    onMouseLeave={function(e) { e.target.style.color = "#94A3B8"; }}
                   >{isOpen ? "▾ Menos detalhes" : "▸ Ver detalhes"}</button>
 
                   <div style={{ maxHeight: isOpen ? 420 : 0, overflow: "hidden", transition: "max-height 0.4s ease" }}>
                     <div style={{ paddingTop: 16 }}>
                       <div style={{ marginBottom: 14 }}>
-                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>DESAFIO</div>
-                        <p style={{ fontSize: 12.5, color: "#64748b", lineHeight: 1.6 }}>{c.challenge}</p>
+                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94A3B8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>DESAFIO</div>
+                        <p style={{ fontSize: 12.5, color: "#E2E8F0", lineHeight: 1.6 }}>{c.challenge}</p>
                       </div>
                       <div style={{ marginBottom: 14 }}>
-                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>SOLUÇÃO</div>
-                        <p style={{ fontSize: 12.5, color: "#64748b", lineHeight: 1.6 }}>{c.solution}</p>
+                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94A3B8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>SOLUÇÃO</div>
+                        <p style={{ fontSize: 12.5, color: "#E2E8F0", lineHeight: 1.6 }}>{c.solution}</p>
                       </div>
                       <div style={{ marginBottom: 14 }}>
-                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94a3b8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>STACK</div>
+                        <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: "#94A3B8", fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>STACK</div>
                         <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                           {c.stack.map(function(s, i) {
                             return (
-                              <span key={i} style={{ fontFamily: "var(--mono)", fontSize: 9.5, padding: "3px 8px", borderRadius: 4, background: "rgba(0,0,0,0.04)", color: "#64748b", fontWeight: 500 }}>{s}</span>
+                              <span key={i} style={{ fontFamily: "var(--mono)", fontSize: 9.5, padding: "3px 8px", borderRadius: 4, background: "rgba(255,255,255,0.08)", color: "#94A3B8", fontWeight: 500 }}>{s}</span>
                             );
                           })}
                         </div>
                       </div>
-                      <div style={{ background: c.color + "08", border: "1px solid " + c.color + "15", borderRadius: 8, padding: "12px 14px" }}>
+                      <div style={{ background: c.color + "12", border: "1px solid " + c.color + "25", borderRadius: 8, padding: "12px 14px" }}>
                         <div style={{ fontSize: 9, fontFamily: "var(--mono)", color: c.color, fontWeight: 600, letterSpacing: "0.1em", marginBottom: 6 }}>RESULTADO</div>
-                        <p style={{ fontSize: 12.5, color: "#475569", lineHeight: 1.6 }}>{c.outcome}</p>
+                        <p style={{ fontSize: 12.5, color: "#E2E8F0", lineHeight: 1.6 }}>{c.outcome}</p>
                       </div>
                     </div>
                   </div>
@@ -159,8 +159,8 @@ export default function Cases() {
           })}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: 36, padding: "24px 0", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-          <p style={{ fontSize: 12, color: "#94a3b8", fontFamily: "var(--mono)", marginBottom: 16 }}>Próximo case pode ser o seu.</p>
+        <div style={{ textAlign: "center", marginTop: 36, padding: "24px 0", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+          <p style={{ fontSize: 12, color: "#94A3B8", fontFamily: "var(--mono)", marginBottom: 16 }}>Próximo case pode ser o seu.</p>
           <button onClick={function() { window.dispatchEvent(new Event("sw3:openWidget")); }} style={{ background: "#00D4FF", color: "#0D1B2A", padding: "11px 26px", borderRadius: 8, fontWeight: 700, fontSize: 13.5, border: "none", cursor: "pointer", fontFamily: "inherit" }}>Contar minha ideia →</button>
         </div>
 
