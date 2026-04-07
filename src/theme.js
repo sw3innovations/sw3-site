@@ -1,5 +1,5 @@
 export var colors = {
-  accent: "#7dd3fc",
+  accent: "#ffffff",
   accent2: "#94a3b8",
   navy: "#475569",
   bg: "#fafafa",
@@ -17,8 +17,8 @@ export var colors = {
 };
 
 export var fonts = {
-  mono: "'JetBrains Mono', monospace",
-  display: "'Outfit', sans-serif",
+  mono: "'DM Sans', sans-serif",
+  display: "'DM Sans', sans-serif",
 };
 
 export var cssVars = {

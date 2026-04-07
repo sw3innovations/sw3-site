@@ -13,10 +13,10 @@ export function gerarPropostaHTML(dados, pricing, previewUrl) {
     '<meta charset="UTF-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
     '<title>Proposta SOLW3</title>',
-    '<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">',
+    '<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">',
     '<style>',
     '* { margin: 0; padding: 0; box-sizing: border-box; }',
-    'body { font-family: "Outfit", sans-serif; background: #fafafa; color: #1e293b; line-height: 1.6; }',
+    'body { font-family: "DM Sans", sans-serif; background: #fafafa; color: #1e293b; line-height: 1.6; }',
     '.container { max-width: 680px; margin: 0 auto; background: #fff; }',
     '.header { background: #0f172a; padding: 32px 40px; text-align: center; }',
     '.logo { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }',
@@ -159,7 +159,7 @@ export function gerarPropostaHTML(dados, pricing, previewUrl) {
 
 export function gerarResumoLead(dados, pricing, previewUrl) {
   var linhas = [
-    '<div style="font-family: Outfit, sans-serif; color: #1e293b;">',
+    '<div style="font-family: DM Sans, sans-serif; color: #1e293b;">',
     '<h2 style="color: #0f172a;">🔔 Novo Lead SOLW3</h2>',
     '<div style="background: #f8fafc; padding: 16px; border-radius: 8px; margin: 16px 0;">',
     '<p><strong>Cliente:</strong> ' + dados.cliente.nome + '</p>',

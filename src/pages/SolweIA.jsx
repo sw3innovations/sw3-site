@@ -5,7 +5,7 @@ import { getReply, detectModality, enviarLead, extrairRequisitos, gerarResumoCon
 import { WELCOME_MESSAGE, QUICK_REPLIES, WHATSAPP_URL } from "../solwe-ia/SolwePrompts";
 
 var MODALITY_INFO = {
-  A: { label: "Projeto Novo", color: "#7dd3fc", icon: "✦", stack: "React, FastAPI, AWS", time: "2–20 semanas" },
+  A: { label: "Projeto Novo", color: "#ffffff", icon: "✦", stack: "React, FastAPI, AWS", time: "2–20 semanas" },
   B: { label: "Refatoração", color: "#a78bfa", icon: "⟳", stack: "Análise + Migração", time: "4–16 semanas" },
   C: { label: "Extensão", color: "#34d399", icon: "⊕", stack: "API + Integração", time: "1–8 semanas" },
   D: { label: "Braço de Dev", color: "#fbbf24", icon: "⊞", stack: "Squad dedicado", time: "Mín. 3 meses" },
@@ -211,8 +211,8 @@ export default function SolweIA() {
   var userMsgCount = messages.filter(function(m) { return m.role === "user"; }).length;
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)", fontFamily: "var(--display)", "--accent": "#7dd3fc", "--accent2": "#94a3b8", "--navy": "#475569", "--bg": "#fafafa", "--bg-dark": "#0f172a", "--bg-dark2": "#1e293b", "--surface": "#ffffff", "--surface-dark": "#1e293b", "--border": "rgba(0,0,0,0.08)", "--border-dark": "rgba(255,255,255,0.08)", "--text": "#1e293b", "--text2": "#64748b", "--text3": "#94a3b8", "--text-light": "#e2e8f0", "--text-light2": "#94a3b8", "--mono": "'JetBrains Mono', monospace", "--display": "'Outfit', sans-serif" }}>
-      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column", background: "var(--bg)", fontFamily: "var(--display)", "--accent": "#ffffff", "--accent2": "#94a3b8", "--navy": "#475569", "--bg": "#fafafa", "--bg-dark": "#0f172a", "--bg-dark2": "#1e293b", "--surface": "#ffffff", "--surface-dark": "#1e293b", "--border": "rgba(0,0,0,0.08)", "--border-dark": "rgba(255,255,255,0.08)", "--text": "#1e293b", "--text2": "#64748b", "--text3": "#94a3b8", "--text-light": "#e2e8f0", "--text-light2": "#94a3b8", "--mono": "'DM Sans', sans-serif", "--display": "'DM Sans', sans-serif" }}>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
 
       {/* Header */}
       <div style={{ background: "var(--bg-dark)", borderBottom: "1px solid var(--border-dark)", padding: "0 24px", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>

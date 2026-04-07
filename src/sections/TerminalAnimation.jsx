@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 var LINES = [
   { delay: 800, tag: ">", tagColor: "rgba(255,255,255,0.3)", text: "solw3 build --projeto \"CRM para clínica\"", textColor: "rgba(255,255,255,0.5)" },
-  { delay: 1200, tag: "[ARCH]", tagColor: "#7dd3fc", text: "Analisando requisitos...", textColor: "rgba(255,255,255,0.5)" },
-  { delay: 900, tag: "[ARCH]", tagColor: "#7dd3fc", text: "3 módulos identificados", textColor: "rgba(255,255,255,0.5)" },
+  { delay: 1200, tag: "[ARCH]", tagColor: "#ffffff", text: "Analisando requisitos...", textColor: "rgba(255,255,255,0.5)" },
+  { delay: 900, tag: "[ARCH]", tagColor: "#ffffff", text: "3 módulos identificados", textColor: "rgba(255,255,255,0.5)" },
   { delay: 1100, tag: "[BACK]", tagColor: "#a78bfa", text: "Gerando FastAPI + PostgreSQL...", textColor: "rgba(255,255,255,0.5)" },
   { delay: 800, tag: "[BACK]", tagColor: "#a78bfa", text: "Auth JWT + RBAC configurado", textColor: "rgba(255,255,255,0.5)" },
   { delay: 1000, tag: "[FRONT]", tagColor: "#34d399", text: "React + Dashboard criado", textColor: "rgba(255,255,255,0.5)" },
   { delay: 900, tag: "[FRONT]", tagColor: "#34d399", text: "Módulo Agenda integrado", textColor: "rgba(255,255,255,0.5)" },
   { delay: 700, tag: "[QA]", tagColor: "#fbbf24", text: "12 testes gerados... 12/12 passed", textColor: "#34d399" },
-  { delay: 1200, tag: "[DEPLOY]", tagColor: "#7dd3fc", text: "staging.cliente.sw3.tec.br", textColor: "rgba(255,255,255,0.5)" },
+  { delay: 1200, tag: "[DEPLOY]", tagColor: "#ffffff", text: "staging.cliente.sw3.tec.br", textColor: "rgba(255,255,255,0.5)" },
   { delay: 600, tag: "---", tagColor: "none", text: "", textColor: "none" },
   { delay: 800, tag: "ok", tagColor: "#34d399", text: "Sistema entregue em 6 semanas", textColor: "rgba(255,255,255,0.6)" },
   { delay: 600, tag: "ok", tagColor: "#34d399", text: "Código no GitHub + docs gerados", textColor: "rgba(255,255,255,0.6)" },

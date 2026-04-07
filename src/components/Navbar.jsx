@@ -18,28 +18,28 @@ export default function Navbar({ scrollY }) {
 
   return (
     <>
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 40px", background: navSolid ? "rgba(13,27,42,0.95)" : "rgba(15,23,42,0.0)", backdropFilter: navSolid ? "blur(20px)" : "none", borderBottom: navSolid ? "1px solid rgba(255,255,255,0.08)" : "none", transition: "all 0.4s ease" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 40px", background: "rgba(8,8,8,0.3)", backdropFilter: "blur(13px)", WebkitBackdropFilter: "blur(13px)", borderBottom: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
         <div style={{ margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "#fff" }}>
-            <Logo size={30} />
+            <Logo size={28} />
             <div>
-              <div style={{ fontWeight: 800, fontSize: 14.5, letterSpacing: "-0.03em", lineHeight: 1 }}>SW3</div>
-              <div style={{ fontSize: 7.5, color: "rgba(255,255,255,0.5)", fontFamily: "var(--mono)", letterSpacing: "0.14em", fontWeight: 500 }}>INNOVATIONS</div>
+              <div style={{ fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em", lineHeight: 1, color: "#f5f5f7", fontFamily: "'DM Sans', sans-serif" }}>SW3</div>
+              <div style={{ fontSize: 7.5, color: "#949494", fontFamily: "'DM Sans', sans-serif", letterSpacing: "0.14em", fontWeight: 500, textTransform: "uppercase" }}>Innovations</div>
             </div>
           </a>
-          <div className="nav-desktop" style={{ display: "flex", gap: 28, alignItems: "center" }}>
+          <div className="nav-desktop" style={{ display: "flex", gap: 32, alignItems: "center" }}>
             {NAV_LINKS.map(function(n) {
               return (
-                <a key={n.l} href={n.h} style={{ color: "rgba(255,255,255,0.65)", textDecoration: "none", fontSize: 12.5, fontWeight: 500, transition: "color 0.2s" }}
-                  onMouseEnter={function(e) { e.target.style.color = "#fff"; }}
-                  onMouseLeave={function(e) { e.target.style.color = "rgba(255,255,255,0.65)"; }}
+                <a key={n.l} href={n.h} style={{ color: "#949494", textDecoration: "none", fontSize: 16, fontWeight: 400, transition: "color 0.2s", fontFamily: "'DM Sans', sans-serif" }}
+                  onMouseEnter={function(e) { e.target.style.color = "#f5f5f7"; }}
+                  onMouseLeave={function(e) { e.target.style.color = "#949494"; }}
                 >{n.l}</a>
               );
             })}
-            <a href="https://solw3.tec.br/login" style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "#E2E8F0", padding: "7px 18px", borderRadius: "7px", fontSize: "13px", textDecoration: "none", marginLeft: "12px", transition: "all 0.2s" }}
-              onMouseOver={function(e) { e.target.style.borderColor = "#00D4FF"; e.target.style.color = "#00D4FF"; }}
-              onMouseOut={function(e) { e.target.style.borderColor = "rgba(255,255,255,0.2)"; e.target.style.color = "#E2E8F0"; }}
-            >Acessar →</a>
+            <a href="https://solw3.tec.br/login" style={{ background: "#f5f5f7", color: "#080808", padding: "8px 20px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
+              onMouseOver={function(e) { e.target.style.background = "#ffffff"; }}
+              onMouseOut={function(e) { e.target.style.background = "#f5f5f7"; }}
+            >Acessar</a>
           </div>
           <button className="nav-hamburger" onClick={function() { setShowMenu(!showMenu); }} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 8, zIndex: 1002 }}>
             <div style={{ width: 20, height: 2, background: "#fff", marginBottom: 5, transition: "all 0.3s", transform: showMenu ? "rotate(45deg) translate(2.5px, 2.5px)" : "none" }} />
@@ -50,11 +50,14 @@ export default function Navbar({ scrollY }) {
       </nav>
 
       {showMenu && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "var(--bg-dark)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 24 }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "#080808", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 28, fontFamily: "'DM Sans', sans-serif" }}>
           {NAV_LINKS.map(function(n) {
-            return <a key={n.l} href={n.h} onClick={function() { setShowMenu(false); }} style={{ color: "rgba(255,255,255,0.8)", textDecoration: "none", fontSize: 20, fontWeight: 600, transition: "color 0.2s" }}>{n.l}</a>;
+            return <a key={n.l} href={n.h} onClick={function() { setShowMenu(false); }} style={{ color: "#949494", textDecoration: "none", fontSize: 22, fontWeight: 400, transition: "color 0.2s" }}
+              onMouseEnter={function(e) { e.target.style.color = "#f5f5f7"; }}
+              onMouseLeave={function(e) { e.target.style.color = "#949494"; }}
+            >{n.l}</a>;
           })}
-          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "#E2E8F0", padding: "10px 28px", borderRadius: "8px", fontSize: "16px", textDecoration: "none", marginTop: 8, transition: "all 0.2s" }}>Acessar →</a>
+          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "#f5f5f7", color: "#080808", padding: "12px 32px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginTop: 8, fontFamily: "'DM Sans', sans-serif" }}>Acessar</a>
         </div>
       )}
     </>
