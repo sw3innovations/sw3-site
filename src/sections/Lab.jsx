@@ -20,10 +20,10 @@ export default function Lab() {
 
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 14px", borderRadius: 999, border: "1px solid #141417", marginBottom: 20 }}>
-            <span style={{ fontSize: 12, color: "#949494", fontWeight: 400 }}>SOLW3 Lab</span>
+            <span style={{ fontSize: 12, color: "#949494", fontWeight: 400 }}>SW3 Lab</span>
           </div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.03em", color: "#f5f5f7", lineHeight: 1.12, marginBottom: 14 }}>Produtos de IA avançada</h2>
-          <p style={{ color: "#949494", fontSize: 16, maxWidth: 420, margin: "0 auto", lineHeight: 1.6 }}>Soluções que podem ser integradas no seu projeto.</p>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.03em", color: "#f5f5f7", lineHeight: 1.12, marginBottom: 14 }}>Produtos e pesquisa SW3</h2>
+          <p style={{ color: "#949494", fontSize: 16, maxWidth: 420, margin: "0 auto", lineHeight: 1.6 }}>Produtos próprios e pesquisas que nascem do nosso pipeline de inovação.</p>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, border: "1px solid #141417", borderRadius: 12, overflow: "hidden", marginBottom: 56 }}>
@@ -51,9 +51,9 @@ export default function Lab() {
             <span style={{ fontSize: 11, color: "#949494", letterSpacing: "0.08em", fontWeight: 400 }}>PLATAFORMA EM PRODUÇÃO · 14 AGENTES IA · PIPELINE SDD</span>
           </div>
 
-          <h3 style={{ fontSize: "clamp(22px, 3vw, 36px)", fontWeight: 400, color: "#f5f5f7", lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.03em" }}>Conheça a SOLW3</h3>
+          <h3 style={{ fontSize: "clamp(22px, 3vw, 36px)", fontWeight: 400, color: "#f5f5f7", lineHeight: 1.15, marginBottom: 16, letterSpacing: "-0.03em" }}>SOLW3 — Nossa AI Software Factory</h3>
           <p style={{ color: "#949494", fontSize: 15, lineHeight: 1.7, marginBottom: 32, maxWidth: 560, margin: "0 auto 32px" }}>
-            Nossa AI Software Factory que entrega sistemas completos com Constitution, Spec, Arquitetura, Código e Auditoria.
+            A plataforma interna da SW3 que orquestra agentes IA para entregar sistemas completos — da especificação ao deploy.
           </p>
 
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", marginBottom: 36 }}>

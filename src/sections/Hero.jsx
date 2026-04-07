@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Logo } from "../components/Logo";
 
-var PARTNERS = ["SW3", "SOLW3", "Agentes IA", "Automação", "Entrega"];
+var PARTNERS = ["AutoVendas", "ContentHub", "SmartCommerce", "AVM Brasil", "OTW Health"];
 
 function GridCanvas() {
   var canvasRef = useRef(null);
@@ -182,11 +182,9 @@ export default function Hero() {
           borderRadius: 999,
           padding: "7px 18px 7px 10px",
         }}>
-          <div style={{ width: 26, height: 26, borderRadius: "50%", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <Logo size={16} />
-          </div>
+          <Logo size={22} />
           <span style={{ fontSize: 13.5, fontWeight: 400, letterSpacing: "0.01em", color: "rgba(255,255,255,0.6)" }}>
-            SW3 · Sua parceira de IA e Automação
+            SW3 Innovations · Software e Soluções com IA
           </span>
         </div>
 
@@ -200,12 +198,12 @@ export default function Hero() {
           color: "#f5f5f7",
         }}>
           Descreva sua ideia.<br />
-          A IA constrói o sistema.
+          Nós construímos o sistema.
         </h1>
 
         {/* Subtitle */}
         <p style={{ fontSize: 17, color: "#949494", lineHeight: 1.6, marginBottom: 48, maxWidth: 500, fontWeight: 400 }}>
-          Converse com a IA, receba proposta em tempo real e acompanhe agentes construindo.
+          Fale com a SW3, receba proposta em tempo real e acompanhe a construção do seu sistema.
         </p>
 
         {/* CTA — with purple inset glow from base.html */}
@@ -228,12 +226,12 @@ export default function Hero() {
           onMouseEnter={function(e) { e.currentTarget.style.background = "#4a7a96"; }}
           onMouseLeave={function(e) { e.currentTarget.style.background = "#5a8caa"; }}
         >
-          Conversar com a IA
+          Falar com a SW3
         </button>
 
         {/* Trust */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 13.5, color: "#f5f5f7", fontWeight: 400 }}>Confiado por empresas</span>
+          <span style={{ fontSize: 13.5, color: "#f5f5f7", fontWeight: 400 }}>Projetos entregues</span>
           <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
             {[0,1,2,3,4].map(function(i) {
               return (

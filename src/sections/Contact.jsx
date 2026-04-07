@@ -8,11 +8,11 @@ export default function Contact() {
         </div>
 
         <h2 style={{ fontSize: "clamp(30px, 4.5vw, 56px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 16, color: "#f5f5f7" }}>
-          Descreva sua ideia.<br />A gente constrói.
+          Descreva sua ideia.<br />A SW3 constrói.
         </h2>
 
         <p style={{ color: "#949494", fontSize: 16, marginBottom: 48, lineHeight: 1.6, maxWidth: 420, margin: "0 auto 48px" }}>
-          Converse com a SOLW3 IA agora ou fale direto com a equipe.
+          Fale com a SW3 agora ou converse direto pelo WhatsApp.
         </p>
 
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginBottom: 64 }}>
@@ -21,7 +21,7 @@ export default function Contact() {
             style={{ background: "#5a8caa", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 500, fontSize: 15, border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
             onMouseEnter={function(e) { e.currentTarget.style.background = "#4a7a96"; }}
             onMouseLeave={function(e) { e.currentTarget.style.background = "#5a8caa"; }}
-          >Conversar com a IA</button>
+          >Falar com a SW3</button>
 
           <a href="https://wa.me/5583981751871?text=Oi%2C%20vim%20do%20site%20SW3" target="_blank" rel="noopener noreferrer"
             style={{ background: "transparent", color: "#f5f5f7", padding: "14px 32px", borderRadius: 10, fontWeight: 400, fontSize: 15, border: "1px solid #141417", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", textDecoration: "none", transition: "border-color 0.2s" }}

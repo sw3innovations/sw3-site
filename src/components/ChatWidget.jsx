@@ -63,7 +63,7 @@ export default function ChatWidget() {
       >
         {open
           ? <><span style={{ fontSize: 13 }}>✕</span> Fechar</>
-          : <><span style={{ fontSize: 15 }}>💬</span> Fale com a SOLW3</>
+          : <><span style={{ fontSize: 15 }}>💬</span> Fale com a SW3</>
         }
       </button>
 
@@ -84,7 +84,7 @@ export default function ChatWidget() {
           <iframe
             src={SOLW3_EMBED_URL}
             style={{ width: "100%", height: "100%", border: "none", display: "block" }}
-            title="SOLW3 IA"
+            title="SW3 Chat"
             allow="clipboard-write"
           />
         </div>

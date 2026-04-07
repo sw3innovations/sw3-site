@@ -21,9 +21,9 @@ export default function Navbar({ scrollY }) {
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, padding: "0 40px", background: "rgba(8,8,8,0.3)", backdropFilter: "blur(13px)", WebkitBackdropFilter: "blur(13px)", borderBottom: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
         <div style={{ margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
           <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "#fff" }}>
-            <Logo size={28} />
+            <Logo size={38} />
             <div>
-              <div style={{ fontWeight: 800, fontSize: 15, letterSpacing: "-0.03em", lineHeight: 1, color: "#f5f5f7", fontFamily: "'DM Sans', sans-serif" }}>SW3</div>
+              <div style={{ fontWeight: 500, fontSize: 15, letterSpacing: "-0.03em", lineHeight: 1, color: "#f5f5f7", fontFamily: "'DM Sans', sans-serif" }}>SW3</div>
               <div style={{ fontSize: 7.5, color: "#949494", fontFamily: "'DM Sans', sans-serif", letterSpacing: "0.14em", fontWeight: 500, textTransform: "uppercase" }}>Innovations</div>
             </div>
           </a>

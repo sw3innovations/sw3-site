@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 var LINES = [
-  { delay: 800, tag: ">", tagColor: "rgba(255,255,255,0.3)", text: "solw3 build --projeto \"CRM para clínica\"", textColor: "rgba(255,255,255,0.5)" },
+  { delay: 800, tag: ">", tagColor: "rgba(255,255,255,0.3)", text: "sw3 build --projeto \"CRM para clínica\"", textColor: "rgba(255,255,255,0.5)" },
   { delay: 1200, tag: "[ARCH]", tagColor: "#ffffff", text: "Analisando requisitos...", textColor: "rgba(255,255,255,0.5)" },
   { delay: 900, tag: "[ARCH]", tagColor: "#ffffff", text: "3 módulos identificados", textColor: "rgba(255,255,255,0.5)" },
   { delay: 1100, tag: "[BACK]", tagColor: "#a78bfa", text: "Gerando FastAPI + PostgreSQL...", textColor: "rgba(255,255,255,0.5)" },
@@ -44,7 +44,7 @@ export default function TerminalAnimation() {
           <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
           <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255,255,255,0.1)" }} />
         </div>
-        <span style={{ fontFamily: "var(--mono)", fontSize: 10, color: "rgba(255,255,255,0.3)", marginLeft: 8 }}>solw3-agent</span>
+        <span style={{ fontFamily: "var(--mono)", fontSize: 10, color: "rgba(255,255,255,0.3)", marginLeft: 8 }}>sw3-pipeline</span>
       </div>
       <div style={{ padding: "16px 18px", fontFamily: "var(--mono)", fontSize: 11.5, lineHeight: 1.8, minHeight: 280 }}>
         {LINES.slice(0, step).map(function(line, i) {

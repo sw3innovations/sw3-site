@@ -41,7 +41,7 @@ export default function Footer() {
               <span style={{ fontWeight: 600, fontSize: 16, letterSpacing: "-0.02em" }}>SW3</span>
             </a>
             <p style={{ fontSize: 13, color: "#949494", lineHeight: 1.65, maxWidth: 220 }}>
-              Tecnologia que resolve. Sistemas construídos por IA, entregues por humanos.
+              Tecnologia que resolve. Sistemas construídos pela SW3 com processos de IA.
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div style={{ borderTop: "1px solid #141417", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <p style={{ fontSize: 12, color: "#949494" }}>© 2026 SW3 Innovations Brasil LTDA. Powered by SOLW3.</p>
+          <p style={{ fontSize: 12, color: "#949494" }}>© 2026 SW3 Innovations Brasil LTDA.</p>
           <p style={{ fontSize: 12, color: "#949494" }}>CNPJ 64.948.554/0001-06</p>
         </div>
 

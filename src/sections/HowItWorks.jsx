@@ -5,25 +5,28 @@ var STYLE = `
   .hiw-cell-03 { grid-column: span 7; }
   .hiw-cell-04 { grid-column: span 5; }
   .hiw-cell-bottom { grid-column: span 12; }
+  .hiw-cell-bottom-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
   @media (max-width: 900px) {
     .hiw-bento { grid-template-columns: 1fr 1fr; gap: 1px; }
     .hiw-cell-01, .hiw-cell-02, .hiw-cell-03, .hiw-cell-04 { grid-column: span 1; }
     .hiw-cell-bottom { grid-column: span 2; }
+    .hiw-cell-bottom-inner { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 560px) {
     .hiw-bento { grid-template-columns: 1fr; }
     .hiw-cell-01, .hiw-cell-02, .hiw-cell-03, .hiw-cell-04, .hiw-cell-bottom { grid-column: span 1; }
+    .hiw-cell-bottom-inner { grid-template-columns: 1fr; gap: 20px; }
   }
 `;
 
 function TerminalBlock() {
   var lines = [
-    { prompt: true, text: "solw3 init --project meu-sistema" },
+    { prompt: true, text: "sw3 new --projeto meu-sistema" },
     { prompt: false, text: "✓ Analisando requisitos..." },
     { prompt: false, text: "✓ Stack selecionada: React · Node · Postgres" },
     { prompt: false, text: "✓ Timeline estimada: 6 semanas" },
     { prompt: false, text: "✓ Proposta gerada em 12s" },
-    { prompt: true, text: "solw3 build --start" },
+    { prompt: true, text: "sw3 build --start" },
     { prompt: false, text: "⟳ Agentes IA iniciados [14 ativos]" },
   ];
 
@@ -127,17 +130,17 @@ export default function HowItWorks() {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 14px", borderRadius: 999, border: "1px solid #141417", marginBottom: 20 }}>
-            <span style={{ fontSize: 12, color: "#949494", fontWeight: 400 }}>Processo</span>
+            <span style={{ fontSize: 12, color: "#949494", fontWeight: 400 }}>Processo SW3</span>
           </div>
-          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.03em", color: "#f5f5f7", lineHeight: 1.12, marginBottom: 14 }}>De conversa a sistema</h2>
-          <p style={{ color: "#949494", fontSize: 16, maxWidth: 420, margin: "0 auto", lineHeight: 1.6 }}>Proposta completa em minutos, não meses.</p>
+          <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.03em", color: "#f5f5f7", lineHeight: 1.12, marginBottom: 14 }}>Como a SW3 entrega</h2>
+          <p style={{ color: "#949494", fontSize: 16, maxWidth: 420, margin: "0 auto", lineHeight: 1.6 }}>Da conversa ao sistema em produção. Powered by SOLW3.</p>
         </div>
 
         {/* Bento grid */}
         <div className="hiw-bento" style={{ border: "1px solid #141417", borderRadius: 12, overflow: "hidden" }}>
 
           {/* 01 — Conversa */}
-          <div className="hiw-cell-01" style={{ ...cellBase, borderRight: "1px solid #141417" }}
+          <div className="hiw-cell-01" style={{ ...cellBase, borderRight: "1px solid #141417", borderBottom: "1px solid #141417" }}
             onMouseEnter={function(e) { e.currentTarget.style.background = "#0d0d0d"; }}
             onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
           >
@@ -237,7 +240,7 @@ export default function HowItWorks() {
               <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#0d0d0d", border: "1px solid #141417", borderRadius: 999 }}>Semanas</span>
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 400, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 12, lineHeight: 1.2 }}>Agentes constroem. Você valida.</h3>
-            <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 20 }}>14 agentes IA trabalhando em paralelo. Staging contínuo para revisão.</p>
+            <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 20 }}>Agentes IA da SOLW3 trabalhando em paralelo. Staging contínuo para revisão.</p>
             <AgentPulse />
           </div>
 
@@ -262,10 +265,11 @@ export default function HowItWorks() {
           </div>
 
           {/* Bottom full-width — Terminal + timeline */}
-          <div className="hiw-cell-bottom" style={{ ...cellBase, borderTop: "1px solid #141417", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "center" }}
+          <div className="hiw-cell-bottom" style={{ ...cellBase, borderTop: "1px solid #141417" }}
             onMouseEnter={function(e) { e.currentTarget.style.background = "#0a0a0a"; }}
             onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
           >
+            <div className="hiw-cell-bottom-inner">
             <TerminalBlock />
             <div>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: "#333", letterSpacing: "0.14em", marginBottom: 24 }}>PIPELINE COMPLETO</div>
@@ -275,6 +279,7 @@ export default function HowItWorks() {
                   Do primeiro chat até o sistema em produção — sem burocracia, sem reuniões intermináveis.
                 </p>
               </div>
+            </div>
             </div>
           </div>
 

@@ -15,7 +15,7 @@ export default function Solutions() {
             <span style={{ fontSize: 12, color: "#949494", fontWeight: 400 }}>O que fazemos</span>
           </div>
           <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, letterSpacing: "-0.03em", color: "#f5f5f7", lineHeight: 1.12, marginBottom: 14 }}>4 formas de trabalhar</h2>
-          <p style={{ color: "#949494", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>Chat com IA conduz do diagnóstico à entrega.</p>
+          <p style={{ color: "#949494", fontSize: 16, maxWidth: 480, margin: "0 auto", lineHeight: 1.6 }}>Nossa equipe + IA conduzem do diagnóstico à entrega.</p>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, border: "1px solid #141417", borderRadius: 12, overflow: "hidden" }}>

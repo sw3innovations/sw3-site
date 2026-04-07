@@ -1,6 +1,6 @@
 var INFO = [
   { label: "Sede", value: "Campina Grande — PB" },
-  { label: "Foco", value: "IA, Automação e Software" },
+  { label: "Foco", value: "Software, IA e Automação" },
   { label: "Modelo", value: "Projetos + Suporte contínuo" },
 ];
 
@@ -12,7 +12,7 @@ export default function About() {
           <div style={{ flex: 1, minWidth: 280 }}>
             <div style={{ fontFamily: "var(--mono)", fontSize: 10, color: "var(--navy)", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 600, marginBottom: 12 }}>QUEM SOMOS</div>
             <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 12, letterSpacing: "-0.02em", lineHeight: 1.25 }}>Tecnologia que resolve</h3>
-            <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.7 }}>Laboratório de tecnologia em Campina Grande-PB. IA + automação para criar e entregar sistemas completos.</p>
+            <p style={{ fontSize: 14, color: "var(--text2)", lineHeight: 1.7 }}>Empresa de tecnologia em Campina Grande-PB. Construímos software para diversos setores com processos monitorados por IA.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 14, minWidth: 260 }}>
             {INFO.map(function(item, i) {
