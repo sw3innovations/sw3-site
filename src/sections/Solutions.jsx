@@ -7,7 +7,7 @@ var MODALITIES = [
 
 export default function Solutions() {
   return (
-    <section id="solucoes" style={{ padding: "100px 40px", background: "#080808", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
+    <section id="solucoes" style={{ padding: "100px 40px", background: "#0c0c0c", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -22,9 +22,9 @@ export default function Solutions() {
           {MODALITIES.map(function(mod, i) {
             return (
               <div key={i}
-                style={{ background: "#080808", borderRight: i < 3 ? "1px solid #141417" : "none", padding: "32px 28px", transition: "background 0.2s", cursor: "default" }}
+                style={{ background: "#0c0c0c", borderRight: i < 3 ? "1px solid #141417" : "none", padding: "32px 28px", transition: "background 0.2s", cursor: "default" }}
                 onMouseEnter={function(e) { e.currentTarget.style.background = "#111111"; }}
-                onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+                onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
               >
                 <div style={{ fontSize: 22, marginBottom: 20, color: "#f5f5f7", opacity: 0.5 }}>{mod.icon}</div>
                 <h3 style={{ fontSize: 17, fontWeight: 500, marginBottom: 10, color: "#f5f5f7", letterSpacing: "-0.02em" }}>{mod.title}</h3>

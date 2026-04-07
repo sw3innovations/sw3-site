@@ -29,7 +29,7 @@ var NAV_GROUPS = [
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#080808", borderTop: "1px solid #141417", padding: "64px 40px 40px", fontFamily: "'DM Sans', sans-serif" }}>
+    <footer style={{ background: "#0c0c0c", borderTop: "1px solid #141417", padding: "64px 40px 40px", fontFamily: "'DM Sans', sans-serif" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr repeat(3, auto)", gap: 64, marginBottom: 64, flexWrap: "wrap" }}>

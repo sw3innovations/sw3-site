@@ -27,7 +27,7 @@ var CATEGORIES = [
 
 export default function PostDelivery() {
   return (
-    <section id="planos" style={{ padding: "100px 40px", background: "#080808", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
+    <section id="planos" style={{ padding: "100px 40px", background: "#0c0c0c", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -41,7 +41,7 @@ export default function PostDelivery() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, border: "1px solid #141417", borderRadius: 12, overflow: "hidden" }}>
           {CATEGORIES.map(function(cat, i) {
             return (
-              <div key={i} style={{ background: "#080808", borderRight: i < 2 ? "1px solid #141417" : "none", padding: "36px 28px" }}>
+              <div key={i} style={{ background: "#0c0c0c", borderRight: i < 2 ? "1px solid #141417" : "none", padding: "36px 28px" }}>
                 <h3 style={{ fontSize: 16, fontWeight: 500, color: "#f5f5f7", marginBottom: 24, letterSpacing: "-0.02em" }}>{cat.title}</h3>
                 {cat.plans.map(function(p, j) {
                   return (

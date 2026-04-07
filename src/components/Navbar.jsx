@@ -36,7 +36,7 @@ export default function Navbar({ scrollY }) {
                 >{n.l}</a>
               );
             })}
-            <a href="https://solw3.tec.br/login" style={{ background: "#f5f5f7", color: "#080808", padding: "8px 20px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
+            <a href="https://solw3.tec.br/login" style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "8px 20px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
               onMouseOver={function(e) { e.target.style.background = "#ffffff"; }}
               onMouseOut={function(e) { e.target.style.background = "#f5f5f7"; }}
             >Acessar</a>
@@ -50,14 +50,14 @@ export default function Navbar({ scrollY }) {
       </nav>
 
       {showMenu && (
-        <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "#080808", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 28, fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ position: "fixed", inset: 0, zIndex: 999, background: "#0c0c0c", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 28, fontFamily: "'DM Sans', sans-serif" }}>
           {NAV_LINKS.map(function(n) {
             return <a key={n.l} href={n.h} onClick={function() { setShowMenu(false); }} style={{ color: "#949494", textDecoration: "none", fontSize: 22, fontWeight: 400, transition: "color 0.2s" }}
               onMouseEnter={function(e) { e.target.style.color = "#f5f5f7"; }}
               onMouseLeave={function(e) { e.target.style.color = "#949494"; }}
             >{n.l}</a>;
           })}
-          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "#f5f5f7", color: "#080808", padding: "12px 32px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginTop: 8, fontFamily: "'DM Sans', sans-serif" }}>Acessar</a>
+          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "12px 32px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginTop: 8, fontFamily: "'DM Sans', sans-serif" }}>Acessar</a>
         </div>
       )}
     </>

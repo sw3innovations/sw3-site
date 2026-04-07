@@ -31,7 +31,7 @@ function TerminalBlock() {
   ];
 
   return (
-    <div style={{ background: "#060606", border: "1px solid #1a1a1a", borderRadius: 8, padding: "16px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 11.5, lineHeight: 1.8 }}>
+    <div style={{ background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 8, padding: "16px 18px", fontFamily: "'DM Sans', sans-serif", fontSize: 11.5, lineHeight: 1.8 }}>
       <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
         {["#ff5f57","#ffbd2e","#28ca41"].map(function(c, i) {
           return <div key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: c }} />;
@@ -61,7 +61,7 @@ function AgentPulse() {
       {agents.map(function(a, i) {
         var active = i < 4;
         return (
-          <div key={a} style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 999, background: active ? "rgba(90,140,170,0.1)" : "#0d0d0d", border: "1px solid " + (active ? "rgba(90,140,170,0.3)" : "#141417") }}>
+          <div key={a} style={{ display: "flex", alignItems: "center", gap: 6, padding: "5px 12px", borderRadius: 999, background: active ? "rgba(90,140,170,0.1)" : "#111", border: "1px solid " + (active ? "rgba(90,140,170,0.3)" : "#141417") }}>
             <div style={{ width: 5, height: 5, borderRadius: "50%", background: active ? "#5a8caa" : "#222" }} />
             <span style={{ fontSize: 11, color: active ? "#5a8caa" : "#333", fontFamily: "'DM Sans', sans-serif" }}>{a}</span>
           </div>
@@ -115,7 +115,7 @@ function TimelineStrip() {
 
 export default function HowItWorks() {
   var cellBase = {
-    background: "#080808",
+    background: "#0c0c0c",
     padding: "32px 28px",
     position: "relative",
     overflow: "hidden",
@@ -123,7 +123,7 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="como-funciona" style={{ padding: "100px 40px", background: "#080808", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
+    <section id="como-funciona" style={{ padding: "100px 40px", background: "#0c0c0c", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
       <style>{STYLE}</style>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -141,12 +141,12 @@ export default function HowItWorks() {
 
           {/* 01 — Conversa */}
           <div className="hiw-cell-01" style={{ ...cellBase, borderRight: "1px solid #141417", borderBottom: "1px solid #141417" }}
-            onMouseEnter={function(e) { e.currentTarget.style.background = "#0d0d0d"; }}
-            onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+            onMouseEnter={function(e) { e.currentTarget.style.background = "#111"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#5a8caa", letterSpacing: "0.1em" }}>01 · CONVERSA</span>
-              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#0d0d0d", border: "1px solid #141417", borderRadius: 999 }}>15–30 min</span>
+              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#111", border: "1px solid #141417", borderRadius: 999 }}>15–30 min</span>
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 400, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 12, lineHeight: 1.2 }}>Descreva o que precisa</h3>
             <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 24 }}>IA mapeia requisitos, faz perguntas inteligentes e entende o contexto do seu negócio.</p>
@@ -163,19 +163,19 @@ export default function HowItWorks() {
 
           {/* 02 — Proposta */}
           <div className="hiw-cell-02" style={{ ...cellBase, borderBottom: "1px solid #141417" }}
-            onMouseEnter={function(e) { e.currentTarget.style.background = "#0d0d0d"; }}
-            onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+            onMouseEnter={function(e) { e.currentTarget.style.background = "#111"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#5a8caa", letterSpacing: "0.1em" }}>02 · PROPOSTA</span>
-              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#0d0d0d", border: "1px solid #141417", borderRadius: 999 }}>Instantâneo</span>
+              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#111", border: "1px solid #141417", borderRadius: 999 }}>Instantâneo</span>
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 400, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 10, lineHeight: 1.2 }}>Escopo e preço em segundos</h3>
             <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 22 }}>Stack, timeline e proposta gerados automaticamente — sem reuniões de alinhamento.</p>
 
             <div style={{ display: "flex", gap: 16 }}>
               {/* Documento simulado */}
-              <div style={{ flex: "1 1 0", background: "#060606", border: "1px solid #1a1a1a", borderRadius: 10, padding: "16px 18px", minWidth: 0 }}>
+              <div style={{ flex: "1 1 0", background: "#0a0a0a", border: "1px solid #1a1a1a", borderRadius: 10, padding: "16px 18px", minWidth: 0 }}>
                 {/* Doc header */}
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14, paddingBottom: 10, borderBottom: "1px solid #141417" }}>
                   <div style={{ width: 18, height: 22, borderRadius: 3, border: "1px solid #5a8caa", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -220,7 +220,7 @@ export default function HowItWorks() {
                   { value: "100%", label: "Automatizado", accent: false },
                 ].map(function(m, i) {
                   return (
-                    <div key={i} style={{ background: "#060606", border: "1px solid " + (m.accent ? "rgba(90,140,170,0.25)" : "#1a1a1a"), borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
+                    <div key={i} style={{ background: "#0a0a0a", border: "1px solid " + (m.accent ? "rgba(90,140,170,0.25)" : "#1a1a1a"), borderRadius: 8, padding: "12px 14px", textAlign: "center" }}>
                       <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 22, fontWeight: 600, color: m.accent ? "#5a8caa" : "#f5f5f7", letterSpacing: "-0.04em", lineHeight: 1 }}>{m.value}</div>
                       <div style={{ fontSize: 9.5, color: "#444", marginTop: 5, letterSpacing: "0.04em", textTransform: "uppercase" }}>{m.label}</div>
                     </div>
@@ -232,12 +232,12 @@ export default function HowItWorks() {
 
           {/* 03 — Build */}
           <div className="hiw-cell-03" style={{ ...cellBase, borderRight: "1px solid #141417" }}
-            onMouseEnter={function(e) { e.currentTarget.style.background = "#0d0d0d"; }}
-            onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+            onMouseEnter={function(e) { e.currentTarget.style.background = "#111"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#5a8caa", letterSpacing: "0.1em" }}>03 · EXECUÇÃO</span>
-              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#0d0d0d", border: "1px solid #141417", borderRadius: 999 }}>Semanas</span>
+              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#111", border: "1px solid #141417", borderRadius: 999 }}>Semanas</span>
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 400, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 12, lineHeight: 1.2 }}>Agentes constroem. Você valida.</h3>
             <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 20 }}>Agentes IA da SOLW3 trabalhando em paralelo. Staging contínuo para revisão.</p>
@@ -246,12 +246,12 @@ export default function HowItWorks() {
 
           {/* 04 — Entrega */}
           <div className="hiw-cell-04" style={{ ...cellBase }}
-            onMouseEnter={function(e) { e.currentTarget.style.background = "#0d0d0d"; }}
-            onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+            onMouseEnter={function(e) { e.currentTarget.style.background = "#111"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
               <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: "#5a8caa", letterSpacing: "0.1em" }}>04 · ENTREGA</span>
-              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#0d0d0d", border: "1px solid #141417", borderRadius: 999 }}>Contínuo</span>
+              <span style={{ fontSize: 10, color: "#333", fontFamily: "'DM Sans', sans-serif", padding: "3px 10px", background: "#111", border: "1px solid #141417", borderRadius: 999 }}>Contínuo</span>
             </div>
             <h3 style={{ fontSize: 22, fontWeight: 400, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 12, lineHeight: 1.2 }}>Em produção, no seu repo</h3>
             <p style={{ fontSize: 13.5, color: "#555", lineHeight: 1.7, marginBottom: 20 }}>Sistema live com docs, código e suporte pós-entrega.</p>
@@ -267,7 +267,7 @@ export default function HowItWorks() {
           {/* Bottom full-width — Terminal + timeline */}
           <div className="hiw-cell-bottom" style={{ ...cellBase, borderTop: "1px solid #141417" }}
             onMouseEnter={function(e) { e.currentTarget.style.background = "#0a0a0a"; }}
-            onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+            onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
           >
             <div className="hiw-cell-bottom-inner">
             <TerminalBlock />

@@ -74,7 +74,7 @@ export default function Cases() {
   var activeCase = cases.find(function(c) { return c.id === active; });
 
   return (
-    <section id="cases" style={{ padding: "100px 40px", background: "#080808", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
+    <section id="cases" style={{ padding: "100px 40px", background: "#0c0c0c", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif" }}>
       <style>{STYLE}</style>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
@@ -150,7 +150,7 @@ export default function Cases() {
             <div className="cases-metrics" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
               {activeCase.results.map(function(r, i) {
                 return (
-                  <div key={i} style={{ background: "#080808", border: "1px solid #141417", borderRadius: 8, padding: "16px 14px" }}>
+                  <div key={i} style={{ background: "#0c0c0c", border: "1px solid #141417", borderRadius: 8, padding: "16px 14px" }}>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, fontWeight: 600, color: "#f5f5f7", letterSpacing: "-0.03em", marginBottom: 4, lineHeight: 1 }}>{r.value}</div>
                     <div style={{ fontSize: 11, color: "#555", lineHeight: 1.4 }}>{r.detail}</div>
                   </div>
@@ -162,7 +162,7 @@ export default function Cases() {
             <div className="cases-challenge-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
               {[["DESAFIO", activeCase.challenge], ["SOLUÇÃO", activeCase.solution]].map(function(item) {
                 return (
-                  <div key={item[0]} style={{ background: "#080808", border: "1px solid #141417", borderRadius: 8, padding: "16px 16px" }}>
+                  <div key={item[0]} style={{ background: "#0c0c0c", border: "1px solid #141417", borderRadius: 8, padding: "16px 16px" }}>
                     <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: "#5a8caa", letterSpacing: "0.14em", marginBottom: 10 }}>{item[0]}</div>
                     <p style={{ fontSize: 12.5, color: "#666", lineHeight: 1.7 }}>{item[1]}</p>
                   </div>
@@ -173,7 +173,7 @@ export default function Cases() {
             {/* Stack + Outcome side by side */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
               {/* Stack */}
-              <div style={{ background: "#080808", border: "1px solid #141417", borderRadius: 8, padding: "16px 16px" }}>
+              <div style={{ background: "#0c0c0c", border: "1px solid #141417", borderRadius: 8, padding: "16px 16px" }}>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: "#949494", letterSpacing: "0.14em", marginBottom: 12 }}>STACK</div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
                   {activeCase.stack.map(function(s, i) {
@@ -187,7 +187,7 @@ export default function Cases() {
               </div>
 
               {/* Outcome */}
-              <div style={{ background: "#080808", border: "1px solid #141417", borderLeft: "2px solid #5a8caa", borderRadius: 8, padding: "16px 16px" }}>
+              <div style={{ background: "#0c0c0c", border: "1px solid #141417", borderLeft: "2px solid #5a8caa", borderRadius: 8, padding: "16px 16px" }}>
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: "#5a8caa", letterSpacing: "0.14em", marginBottom: 10 }}>RESULTADO</div>
                 <p style={{ fontSize: 12.5, color: "#666", lineHeight: 1.7 }}>{activeCase.outcome}</p>
               </div>

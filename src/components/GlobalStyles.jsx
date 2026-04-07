@@ -4,8 +4,8 @@ export default function GlobalStyles() {
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; background: #080808; }
-        body { overflow-x: hidden; font-family: 'DM Sans', sans-serif; background: #080808; color: #f5f5f7; }
+        html { scroll-behavior: smooth; overflow-x: hidden; background: #0c0c0c; }
+        body { overflow-x: hidden; font-family: 'DM Sans', sans-serif; background: #0c0c0c; color: #f5f5f7; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #141417; border-radius: 2px; }

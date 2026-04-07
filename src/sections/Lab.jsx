@@ -15,7 +15,7 @@ var FEATURES = [
 
 export default function Lab() {
   return (
-    <section id="lab" style={{ padding: "100px 40px", background: "#080808", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
+    <section id="lab" style={{ padding: "100px 40px", background: "#0c0c0c", borderTop: "1px solid #141417", fontFamily: "'DM Sans', sans-serif", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         <div style={{ textAlign: "center", marginBottom: 56 }}>
@@ -29,9 +29,9 @@ export default function Lab() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 1, border: "1px solid #141417", borderRadius: 12, overflow: "hidden", marginBottom: 56 }}>
           {PROJECTS.map(function(p, i) {
             return (
-              <div key={i} style={{ background: "#080808", borderRight: i < 2 ? "1px solid #141417" : "none", padding: "32px 28px", transition: "background 0.2s" }}
-                onMouseEnter={function(e) { e.currentTarget.style.background = "#0e0e0e"; }}
-                onMouseLeave={function(e) { e.currentTarget.style.background = "#080808"; }}
+              <div key={i} style={{ background: "#0c0c0c", borderRight: i < 2 ? "1px solid #141417" : "none", padding: "32px 28px", transition: "background 0.2s" }}
+                onMouseEnter={function(e) { e.currentTarget.style.background = "#131313"; }}
+                onMouseLeave={function(e) { e.currentTarget.style.background = "#0c0c0c"; }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
                   <h3 style={{ fontSize: 17, fontWeight: 500, color: "#f5f5f7", letterSpacing: "-0.02em" }}>{p.name}</h3>
