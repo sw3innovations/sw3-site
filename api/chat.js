@@ -55,7 +55,7 @@ export default async function handler(req, res) {
     // Prompt caching: system como array com cache_control (Anthropic ephemeral cache)
     // Reduz ~90% do custo do system prompt apos o primeiro processamento
     var requestBody = {
-      model: "claude-sonnet-4-20250514",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 1024,
       messages: limitedMessages
     };
