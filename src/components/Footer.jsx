@@ -14,7 +14,7 @@ var NAV_GROUPS = [
     title: "Produto",
     links: [
       { l: "Lab", h: "#lab" },
-      { l: "SOLW3", h: "https://solw3.tec.br" },
+      { l: "SOLW3", h: "https://portal.solw3.com" },
       { l: "Portfólio", h: "#solw3" },
     ],
   },

@@ -7,7 +7,7 @@
  */
 import { useState, useEffect } from "react";
 
-const SOLW3_EMBED_URL = "https://solw3.tec.br/chat/embed";
+const SOLW3_EMBED_URL = "https://portal.solw3.com/chat/embed";
 
 export default function ChatWidget() {
   var _open = useState(false);
@@ -63,7 +63,7 @@ export default function ChatWidget() {
       >
         {open
           ? <><span style={{ fontSize: 13 }}>✕</span> Fechar</>
-          : <><span style={{ fontSize: 15 }}>💬</span> Fale com a SW3</>
+          : <><span style={{ fontSize: 15 }}>💬</span> Fale com a SOLW3</>
         }
       </button>
 

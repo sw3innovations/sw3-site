@@ -36,7 +36,7 @@ export default function Navbar({ scrollY }) {
                 >{n.l}</a>
               );
             })}
-            <a href="https://solw3.tec.br/login" style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "8px 20px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
+            <a href="https://portal.solw3.com/login" style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "8px 20px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", transition: "background 0.2s" }}
               onMouseOver={function(e) { e.target.style.background = "#ffffff"; }}
               onMouseOut={function(e) { e.target.style.background = "#f5f5f7"; }}
             >Acessar</a>
@@ -57,7 +57,7 @@ export default function Navbar({ scrollY }) {
               onMouseLeave={function(e) { e.target.style.color = "#949494"; }}
             >{n.l}</a>;
           })}
-          <a href="https://solw3.tec.br/login" onClick={function() { setShowMenu(false); }} style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "12px 32px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginTop: 8, fontFamily: "'DM Sans', sans-serif" }}>Acessar</a>
+          <a href="https://portal.solw3.com/login" onClick={function() { setShowMenu(false); }} style={{ background: "#f5f5f7", color: "#0c0c0c", padding: "12px 32px", borderRadius: "8px", fontSize: "15px", fontWeight: 500, textDecoration: "none", marginTop: 8, fontFamily: "'DM Sans', sans-serif" }}>Acessar</a>
         </div>
       )}
     </>

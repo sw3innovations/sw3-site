@@ -64,7 +64,7 @@ export default function Lab() {
             })}
           </div>
 
-          <a href="https://solw3.tec.br" target="_blank" rel="noreferrer"
+          <a href="https://portal.solw3.com" target="_blank" rel="noreferrer"
             style={{ display: "inline-block", padding: "13px 32px", background: "#5a8caa", borderRadius: 10, color: "#fff", fontWeight: 500, fontSize: 15, textDecoration: "none", transition: "background 0.2s" }}
             onMouseEnter={function(e) { e.currentTarget.style.background = "#4a7a96"; }}
             onMouseLeave={function(e) { e.currentTarget.style.background = "#5a8caa"; }}
