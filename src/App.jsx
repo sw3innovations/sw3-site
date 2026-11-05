@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { cssVars } from "./theme";
+import { content } from "./content";
 import GlobalStyles from "./components/GlobalStyles";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ChatWidget from "./components/ChatWidget";
+import WhatsAppButton from "./components/WhatsAppButton";
 import Home from "./pages/Home";
 
-function HomeLayout() {
-  var _scroll = useState(0);
-  var scrollY = _scroll[0];
-  var setScrollY = _scroll[1];
+function Site({ lang }) {
+  var t = content[lang];
 
   useEffect(function() {
-    var fn = function() { setScrollY(window.scrollY); };
-    window.addEventListener("scroll", fn, { passive: true });
-    return function() { window.removeEventListener("scroll", fn); };
-  }, []);
+    document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+    document.title = t.meta.title;
+    var desc = document.querySelector('meta[name="description"]');
+    if (desc) desc.setAttribute("content", t.meta.description);
+  }, [lang]);
 
   return (
     <>
-      <Navbar scrollY={scrollY} />
-      <Home />
-      <Footer />
-      <ChatWidget />
+      <Navbar t={t} />
+      <Home t={t} />
+      <Footer t={t} whatsappText={t.whatsappText} />
+      <WhatsAppButton label={t.floating} whatsappText={t.whatsappText} />
     </>
   );
 }
@@ -31,16 +31,16 @@ function HomeLayout() {
 export default function App() {
   return (
     <div style={Object.assign({}, cssVars, {
-      fontFamily: "var(--display)",
-      background: "var(--bg)",
+      fontFamily: "'DM Sans', sans-serif",
+      background: "#0c0c0c",
       color: "var(--text)",
       minHeight: "100vh",
     })}>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<HomeLayout />} />
-        {/* /ia era a IA local legada — agora o widget SOLW3 é o único ponto de entrada */}
-        <Route path="/ia" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<Site lang="pt" />} />
+        <Route path="/en" element={<Site lang="en" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );

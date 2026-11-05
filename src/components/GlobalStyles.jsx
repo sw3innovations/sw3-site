@@ -9,25 +9,25 @@ export default function GlobalStyles() {
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #141417; border-radius: 2px; }
-        ::selection { background: rgba(124,58,237,0.3); }
+        ::selection { background: rgba(90,140,170,0.35); }
         @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+          .grid-5 { grid-template-columns: 1fr 1fr !important; }
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }
-          .hero-terminal { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .grid-3 { grid-template-columns: 1fr !important; }
+          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
           section { padding-left: 20px !important; padding-right: 20px !important; }
+          footer { padding-left: 20px !important; padding-right: 20px !important; }
           nav { padding: 0 20px !important; }
-          div[style*='repeat(4'] { grid-template-columns: 1fr 1fr !important; }
-          div[style*='repeat(3'] { grid-template-columns: 1fr !important; }
-          .cases-grid { grid-template-columns: 1fr !important; }
-          .portfolio-grid { grid-template-columns: 1fr 1fr !important; }
         }
         @media (max-width: 480px) {
-          div[style*='repeat(4'] { grid-template-columns: 1fr !important; }
-          div[style*='repeat(2'] { grid-template-columns: 1fr !important; }
-          .portfolio-grid { grid-template-columns: 1fr !important; }
+          .grid-5, .grid-2 { grid-template-columns: 1fr !important; }
           section { padding-left: 16px !important; padding-right: 16px !important; }
+          footer { padding-left: 16px !important; padding-right: 16px !important; }
           nav { padding: 0 16px !important; }
         }
       `}</style>

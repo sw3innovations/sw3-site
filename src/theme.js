@@ -42,4 +42,3 @@ export var cssVars = {
 };
 
 export var LOGO_SRC = "/logo.png";
-export var SOLW3_LOGO = "/solw3-logo.png";

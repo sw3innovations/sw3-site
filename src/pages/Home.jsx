@@ -1,23 +1,19 @@
 import Hero from "../sections/Hero";
-import Solutions from "../sections/Solutions";
-import HowItWorks from "../sections/HowItWorks";
+import Services from "../sections/Services";
 import Cases from "../sections/Cases";
+import HowWeWork from "../sections/HowWeWork";
 import PostDelivery from "../sections/PostDelivery";
-import Lab from "../sections/Lab";
-import ConhecaSolw3 from "../sections/ConhecaSolw3";
 import Contact from "../sections/Contact";
 
-export default function Home() {
+export default function Home({ t }) {
   return (
-    <>
-      <Hero />
-      <Solutions />
-      <HowItWorks />
-      <Cases />
-      <PostDelivery />
-      <Lab />
-      <ConhecaSolw3 />
-      <Contact />
-    </>
+    <main>
+      <Hero t={t.hero} whatsappText={t.whatsappText} />
+      <Services t={t.services} />
+      <Cases t={t.cases} />
+      <HowWeWork t={t.how} />
+      <PostDelivery t={t.plans} />
+      <Contact t={t.contact} whatsappText={t.whatsappText} />
+    </main>
   );
 }

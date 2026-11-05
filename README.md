@@ -1,13 +1,12 @@
 # SW3 Innovations — Site Institucional
 
-Site institucional da **SW3 Innovations Brasil LTDA**, laboratório de inovação em automação e IA.
+Site institucional da **SW3 Innovations Brasil LTDA** (www.sw3.tec.br), em português (`/`) e inglês (`/en`).
 
 ## Stack
 
-- **Vite** + **React 18**
-- CSS inline (variáveis CSS)
-- Fontes: Outfit + JetBrains Mono (Google Fonts)
-- Chat widget SOLW3 (API Anthropic + fallback local)
+- **Vite** + **React 18**, estilos inline
+- Fonte: DM Sans (Google Fonts)
+- Site 100% estático: sem API, sem chat. Contato por WhatsApp e e-mail.
 
 ## Desenvolvimento
 
@@ -16,32 +15,25 @@ npm install
 npm run dev
 ```
 
-## Build & Deploy
+## Conteúdo
+
+Todo o texto (PT e EN), o número de WhatsApp e o e-mail ficam em `src/content.js`. As seções em `src/sections/` só leem de lá.
+
+## Build
 
 ```bash
 npm run build
 ```
 
-Deploy automático via **Vercel** conectado ao repositório GitHub.
+Gera `dist/` e, via `scripts/postbuild.js`, `dist/en/index.html` (o nginx serve só arquivos estáticos, então `/en` precisa existir em disco).
 
-## Estrutura
+## Deploy
 
-```
-sw3-site/
-├── index.html          # Entry point + SEO meta tags
-├── vite.config.js      # Vite config
-├── package.json
-├── public/             # Assets estáticos (favicon, OG image)
-├── src/
-│   ├── main.jsx        # React root
-│   └── App.jsx         # Site completo (sw3-esri-v2)
-└── .gitignore
-```
+Produção é o nginx do servidor Itline (`ssh itline`), em `/var/www/sw3.tec.br/html` (dono `sw3innovation`). Deploy manual:
 
-## Domínio
-
-- Produção: **sw3.tec.br** (Vercel)
-- Contato: admin@sw3.tec.br | (83) 98120 0570
+1. `npm run build` e `xattr -cr dist`
+2. Backup da pasta atual (`html.bak-AAAAMMDD`) no servidor
+3. Copiar `dist/` para `html/`, mantendo `.well-known/`, e apagar arquivos `._*`
 
 ---
 
