@@ -33,7 +33,7 @@ Produção é o nginx do servidor Itline (`ssh itline`), em `/var/www/sw3.tec.br
 
 1. `npm run build` e `xattr -cr dist`
 2. Backup da pasta atual (`html.bak-AAAAMMDD`) no servidor
-3. Copiar `dist/` para `html/`, mantendo `.well-known/`, e apagar arquivos `._*`
+3. Copiar `dist/` para `html/`, mantendo `.well-known/` e `demo/` (páginas publicadas fora do build), e apagar arquivos `._*`; com rsync `--delete`, usar `--exclude .well-known --exclude demo`
 
 ---
 
